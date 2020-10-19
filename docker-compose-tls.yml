@@ -1,0 +1,43 @@
+# STIG Manager docker-compose orchestration
+
+version: '3.7'
+
+services:
+  auth:
+    image: nuwcdivnpt/stig-manager-auth
+    ports:
+      - "8080:8080"
+  db:
+    image: mysql:8.0
+    ports:
+      - "50001:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpw
+      - MYSQL_USER=stigman
+      - MYSQL_DATABASE=stigman
+      - MYSQL_PASSWORD=temporary
+    cap_add:
+      - SYS_NICE  # workaround MySQL logging bug => mbind: Operation not permitted
+    volumes:
+      - ./tls/certs:/etc/certs
+      - ./tls/mysql/tls.cnf:/etc/mysql/conf.d/tls.cnf 
+      - ./tls/mysql/init-tls-user.sql:/docker-entrypoint-initdb.d/init-tls-user.sql 
+  api:
+    image: nuwcdivnpt/stig-manager
+    environment:
+      - STIGMAN_API_AUTHORITY=http://auth:8080/auth/realms/stigman
+      - STIGMAN_CLASSIFICATION=U
+      - STIGMAN_DB_HOST=db
+      - STIGMAN_DB_TLS_CA_FILE=ca.pem
+      - STIGMAN_DB_TLS_CERT_FILE=client-cert.pem
+      - STIGMAN_DB_TLS_KEY_FILE=client-key.pem
+      # - STIGMAN_INIT_IMPORT_STIGS=true
+      # - STIGMAN_INIT_IMPORT_SCAP=true
+    init: true
+    ports:
+      - "54000:54000"
+    volumes:
+      - ./tls/certs/ca.pem:/home/node/tls/ca.pem
+      - ./tls/certs/client-cert.pem:/home/node/tls/client-cert.pem
+      - ./tls/certs/client-key.pem:/home/node/tls/client-key.pem
+      

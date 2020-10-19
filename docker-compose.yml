@@ -1,0 +1,32 @@
+# STIG Manager docker-compose orchestration
+
+version: '3.7'
+
+services:
+  auth:
+    image: carlsmig/stig-manager-auth
+    ports:
+      - "8080:8080"
+  db:
+    image: mysql:8.0
+    ports:
+      - "50001:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpw
+      - MYSQL_USER=stigman
+      - MYSQL_PASSWORD=stigman
+      - MYSQL_DATABASE=stigman
+    cap_add:
+      - SYS_NICE  # workaround MySQL logging bug => mbind: Operation not permitted 
+  api:
+    image: carlsmig/stig-manager
+    environment:
+      - STIGMAN_API_AUTHORITY=http://auth:8080/auth/realms/stigman
+      - STIGMAN_CLASSIFICATION=U
+      - STIGMAN_DB_HOST=db
+      - STIGMAN_DB_PASSWORD=stigman
+      # - STIGMAN_INIT_IMPORT_STIGS=true
+      # - STIGMAN_INIT_IMPORT_SCAP=true
+    init: true
+    ports:
+      - "54000:54000"
