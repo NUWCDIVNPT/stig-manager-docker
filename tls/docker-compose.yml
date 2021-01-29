@@ -7,6 +7,8 @@ services:
     image: nuwcdivnpt/stig-manager-auth
     ports:
       - "8080:8080"
+    environment:
+      - PROXY_ADDRESS_FORWARDING=true
   db:
     image: mysql:8.0
     ports:
@@ -19,9 +21,9 @@ services:
     cap_add:
       - SYS_NICE  # workaround MySQL logging bug => mbind: Operation not permitted
     volumes:
-      - ./tls/certs:/etc/certs
-      - ./tls/mysql/tls.cnf:/etc/mysql/conf.d/tls.cnf 
-      - ./tls/mysql/init-tls-user.sql:/docker-entrypoint-initdb.d/init-tls-user.sql 
+      - ./certs:/etc/certs
+      - ./mysql/tls.cnf:/etc/mysql/conf.d/tls.cnf 
+      - ./mysql/init-tls-user.sql:/docker-entrypoint-initdb.d/init-tls-user.sql 
   api:
     image: nuwcdivnpt/stig-manager
     environment:
@@ -31,13 +33,25 @@ services:
       - STIGMAN_DB_TLS_CA_FILE=ca.pem
       - STIGMAN_DB_TLS_CERT_FILE=client-cert.pem
       - STIGMAN_DB_TLS_KEY_FILE=client-key.pem
+      - STIGMAN_CLIENT_KEYCLOAK_AUTH=https://neo/auth
+
       # - STIGMAN_INIT_IMPORT_STIGS=true
       # - STIGMAN_INIT_IMPORT_SCAP=true
     init: true
     ports:
       - "54000:54000"
     volumes:
-      - ./tls/certs/ca.pem:/home/node/tls/ca.pem
-      - ./tls/certs/client-cert.pem:/home/node/tls/client-cert.pem
-      - ./tls/certs/client-key.pem:/home/node/tls/client-key.pem
+      - ./certs/ca.pem:/home/node/tls/ca.pem
+      - ./certs/client-cert.pem:/home/node/tls/client-cert.pem
+      - ./certs/client-key.pem:/home/node/tls/client-key.pem
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/neo.crt:/etc/nginx/neo.crt
+      - ./nginx/neo.key:/etc/nginx/neo.key
+    ports:
+    - "48080:80"
+    - "443:443"
+
       

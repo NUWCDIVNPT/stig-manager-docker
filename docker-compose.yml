@@ -4,7 +4,7 @@ version: '3.7'
 
 services:
   auth:
-    image: carlsmig/stig-manager-auth
+    image: nuwcdivnpt/stig-manager-auth
     ports:
       - "8080:8080"
   db:
@@ -19,14 +19,17 @@ services:
     cap_add:
       - SYS_NICE  # workaround MySQL logging bug => mbind: Operation not permitted 
   api:
-    image: carlsmig/stig-manager
+    # image: nuwcdivnpt/stig-manager
+    image: stig-manager-ib
     environment:
       - STIGMAN_API_AUTHORITY=http://auth:8080/auth/realms/stigman
       - STIGMAN_CLASSIFICATION=U
       - STIGMAN_DB_HOST=db
       - STIGMAN_DB_PASSWORD=stigman
-      # - STIGMAN_INIT_IMPORT_STIGS=true
-      # - STIGMAN_INIT_IMPORT_SCAP=true
+      - STIGMAN_INIT_IMPORT_STIGS=true
+      - STIGMAN_INIT_IMPORT_SCAP=true
+      - STIGMAN_SWAGGER_ENABLED=true
     init: true
     ports:
-      - "54000:54000"
+      # - "54000:54000"
+      - "64001:54000"
