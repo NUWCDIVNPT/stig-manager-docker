@@ -1,0 +1,68 @@
+# STIG Manager docker-compose orchestration
+
+version: '3.7'
+
+services:
+  db:
+    image: mysql:8.0
+    # ports:
+    #   - "50001:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpw
+      - MYSQL_USER=stigman
+      - MYSQL_DATABASE=stigman
+      - MYSQL_PASSWORD=temporary
+    cap_add:
+      - SYS_NICE  # workaround MySQL logging bug => mbind: Operation not permitted
+    volumes:
+      - ./certs/mysql:/etc/certs
+      - ./mysql/tls.cnf:/etc/mysql/conf.d/tls.cnf 
+      - ./mysql/init-tls-user.sql:/docker-entrypoint-initdb.d/init-tls-user.sql 
+  api:
+    image: nuwcdivnpt/stig-manager
+    environment:
+      - STIGMAN_OIDC_PROVIDER=http://auth:8080/auth/realms/stigman
+      - STIGMAN_CLIENT_OIDC_PROVIDER=https://localhost:8443/auth/realms/stigman
+      - STIGMAN_CLASSIFICATION=U
+      - STIGMAN_DB_HOST=db
+      - STIGMAN_DB_TLS_CA_FILE=ca.pem
+      - STIGMAN_DB_TLS_CERT_FILE=client-cert.pem
+      - STIGMAN_DB_TLS_KEY_FILE=client-key.pem
+      # - STIGMAN_INIT_IMPORT_STIGS=true
+      # - STIGMAN_INIT_IMPORT_SCAP=true
+    init: true
+    # ports:
+    #   - "54000:54000"
+    volumes:
+      - ./certs/mysql/ca.pem:/home/node/tls/ca.pem
+      - ./certs/mysql/client-cert.pem:/home/node/tls/client-cert.pem
+      - ./certs/mysql/client-key.pem:/home/node/tls/client-key.pem
+  auth:
+    image: jboss/keycloak:15.0.0
+    environment:
+      - DB_VENDOR=H2
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=Pa55w0rd
+      - KEYCLOAK_IMPORT=/tmp/import_realm.json
+    volumes:
+      - ./kc/standalone-ha.native.xml:/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
+      - ./certs/localhost/localhost.p12:/opt/jboss/keycloak/standalone/configuration/servercert.p12
+      - ./certs/dod/dod-id-5.9.p12:/opt/jboss/keycloak/standalone/configuration/truststore.p12
+      - ./kc/create-x509-user.jar:/opt/jboss/keycloak/standalone/deployments/create-x509-user.jar
+      - ./kc/stigman_realm.json:/tmp/import_realm.json
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx-api.conf:/etc/nginx/nginx.conf
+      - ./certs/localhost/localhost.crt:/etc/nginx/cert.pem
+      - ./certs/localhost/localhost.key:/etc/nginx/privkey.pem
+      - ./certs/dod/dod-id-5.9.pem:/etc/nginx/dod-id.pem
+      - ./nginx/index.html:/usr/share/nginx/html/index.html
+    # command: [nginx-debug, '-g', 'daemon off;']
+    ports:
+    - "443:443"
+
+    
