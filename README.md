@@ -66,7 +66,7 @@ When Keycloak is orchestrated to provide native TLS (no reverse proxy), it requi
 
 > The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/servercert.p12`
 
-### Modifying `keycloak-ha.xml`
+### Modifying `standalone-ha.xml`
 #### Keycloak behind nginx
 
 The example volume mounts the file `kc/standalone-ha.nginx.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
