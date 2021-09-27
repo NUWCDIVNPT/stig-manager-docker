@@ -1,47 +1,32 @@
-# STIG Manager OSS docker-compose examples
+## Modifying `keycloak-ha.xml`
+### Keycloak behind nginx
+Add these lines:
 
-Sample docker-compose orchestrations for the [STIG Manager OSS project](https://github.com/NUWCDIVNPT/stig-manager)
+https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.nginx.xml#L538-L557
 
-*The orchestrations are dependent on the [official MySQL 8 image](https://hub.docker.com/_/mysql) and a [custom Keycloak 11 image](https://hub.docker.com/r/nuwcdivnpt/stig-manager-auth).*
+### Keycloak native TLS
+Add these lines:
 
-## Common step
-- Clone this repository and change directory to the cloned working directory.
+https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.native.xml#L58-L67
 
-### Orchestration with unencrypted database session and password authentication
-- If you wish the API to automatically fetch current STIG content, in the file `docker-compose.yml` uncomment the lines
-```
-      # - STIGMAN_INIT_IMPORT_STIGS=true
-      # - STIGMAN_INIT_IMPORT_SCAP=true
-```
+and this line:
 
-- From your shell, execute `docker-compose up -d && docker-compose logs -f`
-- When all the services have started, STIG Manager will output:
-```
-Server is listening on port 54000
-API is available at /api
-API documentation is available at /api-docs
-Client is available at /
-```
-- Navigate to ```http://localhost:54000```
-- Login using credentials "admin/password", as documented for [the demonstration Keycloak image](https://hub.docker.com/r/nuwcdivnpt/stig-manager-auth)
-- Refer to the [STIG Manager documentation](https://nuwcdivnpt.github.io/stig-manager) to create your first Collection
+https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.native.xml#L644
 
-### Orchestration with TLS encrypted database session and client certificate authentication
+## Notes
+### Make pkcs12 archive from cert and private key
 
-- If you wish the API to automatically fetch current STIG content, in the file `docker-compose-tls.yml` uncomment the lines
-```
-      # - STIGMAN_INIT_IMPORT_STIGS=true
-      # - STIGMAN_INIT_IMPORT_SCAP=true
-```
+`openssl pkcs12 -export -name server-cert -in tls.crt -inkey tls.key -out tls.p12`
 
-- From your shell, execute `docker-compose -f docker-compose-tls.yml up -d && docker-compose logs -f`
-- When all the services have started, STIG Manager will output:
-```
-Server is listening on port 54000
-API is available at /api
-API documentation is available at /api-docs
-Client is available at /
-```
-- Navigate to ```http://localhost:54000```
-- Login using credentials "admin/password", as documented for [the demonstration Keycloak image](https://hub.docker.com/r/nuwcdivnpt/stig-manager-auth)
-- Refer to the [STIG Manager documentation](https://nuwcdivnpt.github.io/stig-manager) to create your first Collection
+(Must set an export password because keytool step below requires one)
+
+### Import pkcs12 archive into a JKS keystore
+
+`keytool -importkeystore -destkeystore tls.jks -srckeystore tls.p12 -srcstoretype pkcs12 -alias server-cert`
+
+### To clear Chrome HSTS entry (for localhost, perhaps)
+
+`chrome://net-internals/#hsts` -  Delete domain security policies
+
+`chrome://settings/clearBrowserData` - Cached images and files
+
