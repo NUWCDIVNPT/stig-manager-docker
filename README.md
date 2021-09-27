@@ -1,17 +1,44 @@
 # Using Keycloak with TLS and CAC authentication
 
-The examples show Keycloak orchestrated two different ways:
-
-- Keycloak natively runs a TLS stack and listens on a TLS port. Orchestration is `docker-compose-kc-native.yml`.
-- Keycloak runs behind nginx, which runs a TLS stack and listens on a TLS port. Nginx forwards traffic to Keycloak which is listening on an unencrypted HTTP port. Orchestration is `docker-compose-kc-reverse.yml`
-
-In both cases the Keycloak realm is configured identically, with an Authentication flow that includes an X.509 Client Certificate execution.
-
 ## Prerequisite: Browser CA trust
 
 The examples use a server certificate for the host `localhost` which is signed by a demonstration CA named "csmig-CA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at `certs/ca/csmig-ca.crt`.
 
 > How you do this varies across operating systems. For Windows, you import the certficate into "Trusted Root Certification Authorities". You should remove the certficate when finished running the examples.
+
+## Run the examples
+
+The examples show Keycloak orchestrated two different ways:
+
+- Keycloak natively runs a TLS stack and listens on a TLS port. To run this orchestration:
+ 
+ ```
+ docker-compose -f docker-compose-kc-native.yml up
+ ```
+
+- Keycloak runs behind nginx, which runs a TLS stack and listens on a TLS port. Nginx forwards traffic to Keycloak which is listening on an unencrypted HTTP port. To run this orchestration:
+
+ ```
+ docker-compose -f docker-compose-kc-nginx.yml up
+ ```
+
+In both cases, once STIG Manager starts point your browser at:
+
+```
+https://localhost/stigman/
+```
+
+For the Keycloak native orchestration, you can access Keycloak at:
+
+```
+https://localhost:8443/
+```
+
+For the Keycloak reverse proxy orchestration, you can access Keycloak at:
+
+```
+https://localhost/auth/
+```
 
 ## Keycloak configuration
 ### Keycloak Authentication Flow
