@@ -3,7 +3,7 @@
 The examples show Keycloak orchestrated two different ways:
 
 - Keycloak natively runs a TLS stack and listens on a TLS port. Orchestration is `docker-compose-kc-native.yml`.
-- Keycloak runs behind nginx, which runs a TLS stack and listens on a TLS port. Nginx forwards traffic to Keycloak which is listening on an unencrypted HTTP port. Orchestration is `cker-compose-kc-reverse.yml`
+- Keycloak runs behind nginx, which runs a TLS stack and listens on a TLS port. Nginx forwards traffic to Keycloak which is listening on an unencrypted HTTP port. Orchestration is `docker-compose-kc-reverse.yml`
 
 In both cases the Keycloak realm is configured identically, with an Authentication flow that includes an X.509 Client Certificate execution.
 
@@ -11,18 +11,19 @@ In both cases the Keycloak realm is configured identically, with an Authenticati
 
 The examples use a server certificate for the host `localhost` which is signed by a demonstration CA named "csmig-CA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at `certs/ca/csmig-ca.crt`.
 
-> How you do this varies across operating systems. For Windows, you import the certficate into "Trusted Root Certification Authorities". You should remove the certficate when finished runsing the examples.
+> How you do this varies across operating systems. For Windows, you import the certficate into "Trusted Root Certification Authorities". You should remove the certficate when finished running the examples.
 
 ## Keycloak configuration
 ### Keycloak Authentication Flow
 
-The Keycloak documentation describes [how to modify a realm's browser authenication flow to incude X.509 client certificates](https://www.keycloak.org/docs/latest/server_admin/#adding-x-509-client-certificate-authentication-to-a-browser-flow).
+The Keycloak documentation describes [how to modify a realm's browser authentication flow to incude X.509 client certificates](https://www.keycloak.org/docs/latest/server_admin/#adding-x-509-client-certificate-authentication-to-a-browser-flow).
 
 The built-in execution "X509/Validate Username Form" attempts to match certificate information to existing Keycloak user accounts and fails otherwise.
 
-> The examples deploy a custom plugin [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in execution to create new user accounts when an exisiting account is not found.
+> The examples deploy a custom plugin [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in execution to create new user accounts when an exisiting account is not found. The plugin file is `kc/create-x509-user.jar`. The examples volume mounts this file to the Keycloak container at `/opt/jboss/keycloak/standalone/deployments/create-x509-user.jar`
 
-The examples import the realm file `kc/stigman_realm.json` which is configured to match the certificate Common Name (CN) to a Keycloak username.
+
+The examples import the realm file `kc/stigman_realm.json`, which is configures the Authentication flow to match a certificate Common Name (CN) to a Keycloak username.
 
 ### Keycloak keystores
 
@@ -41,9 +42,9 @@ When Keycloak is orchestrated to provide native TLS (no reverse proxy), it requi
 ### Modifying `keycloak-ha.xml`
 #### Keycloak behind nginx
 
-> The example volume mounts the file `kc/standalone-ha.nginx.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
+The example volume mounts the file `kc/standalone-ha.nginx.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
 
-The example includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.nginx.xml#L538-L557) as children of the element `<server><profile><subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">`
+The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.nginx.xml#L538-L557) as children of the element `<server><profile><subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">`
 
 ```
 <spi name="x509cert-lookup">
@@ -70,9 +71,9 @@ The example includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-do
 
 #### Keycloak native TLS
 
-> The example volume mounts the file `kc/standalone-ha.native.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
+The example volume mounts the file `kc/standalone-ha.native.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
 
-The example includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.native.xml#L58-L67) as children of `<server><management><security-realms>`
+The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.native.xml#L58-L67) as children of `<server><management><security-realms>`
 
 ```
 <security-realm name="ssl-realm">
