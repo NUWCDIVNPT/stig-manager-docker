@@ -73,7 +73,7 @@ In this orchestratiuon, nginx provides TLS service to the API and Keycloak. Clie
 
 The orchestration:
 
-- volume mounts the file `nginx/nginx-api.conf` to the nginx container at `/etc/nginx/nginx.conf`
+- volume mounts the file `nginx/nginx-api-kc.conf` to the nginx container at `/etc/nginx/nginx.conf`
 - volume mounts the file `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
 - volume mounts the file `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
 
