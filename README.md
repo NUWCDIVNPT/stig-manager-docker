@@ -64,8 +64,8 @@ In this orchestratiuon, nginx provides TLS service to the API only. Client certi
 The orchestration:
 
 - volume mounts the file `nginx/nginx-api.conf` to the nginx container at `/etc/nginx/nginx.conf`
-- volume mounts the file `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
-- volume mounts the file `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
+- volume mounts the server certificate `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
+- volume mounts the server private key `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
 
 ### Keycloak runs behind nginx
 
@@ -74,8 +74,9 @@ In this orchestratiuon, nginx provides TLS service to the API and Keycloak. Clie
 The orchestration:
 
 - volume mounts the file `nginx/nginx-api-kc.conf` to the nginx container at `/etc/nginx/nginx.conf`
-- volume mounts the file `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
-- volume mounts the file `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
+- volume mounts the server certificate `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
+- volume mounts the server private key `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
+- volume mounts the DoD CAs in `certs/dod/dod-id-5.9.pem` to the nginx container at `/etc/nginx/dod-id.pem`
 
 ## Keycloak configuration
 ### Keycloak Authentication Flow
