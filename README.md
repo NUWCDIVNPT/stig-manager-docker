@@ -10,12 +10,12 @@ The examples use a server certificate for the host `localhost` which is signed b
 
 The examples show Keycloak orchestrated two different ways:
 
-### Keycloak natively runs a TLS stack and listens on a TLS port
+### Keycloak natively runs a TLS stack
 
 ![Keycloak native diagram](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/cac/diagrams/kc-native.svg)
 
-- Keycloak runs a TLS stack and listens on an exposed TLS port
-- Nginx runs a TLS stack and listens on an exposed TLS port. Nginx forwards traffic to the API listening on an unexposed HTTP port.
+- Keycloak runs a TLS stack with client certificate verification and listens on an exposed TLS port
+- Nginx runs a TLS stack without client certificate verification and listens on an exposed TLS port. Nginx forwards traffic to the API listening on an unexposed HTTP port.
 
 To run this orchestration:
  
@@ -28,7 +28,7 @@ To run this orchestration:
 ![Keycloak reverse diagram](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/cac/diagrams/kc-reverse.svg)
 
 
-- Nginx runs a TLS stack and listens on an exposed TLS port. Nginx forwards traffic to both the API and Keycloak which are listening on unexposed HTTP ports
+- Nginx runs a TLS stack with client certificate verification and listens on an exposed TLS port. Nginx forwards traffic to both the API and Keycloak which are listening on unexposed HTTP ports
  
 To run this orchestration:
 
