@@ -2,13 +2,13 @@
 
 ## Prerequisite: Browser CA trust
 
-The examples use a server certificate for the host `localhost` which is signed by a demonstration CA named "csmig-CA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at `certs/ca/csmig-ca.crt`.
+The project uses a server certificate for the host `localhost` which is signed by a demonstration CA named "csmig-CA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at `certs/ca/csmig-ca.crt`.
 
-> How you do this varies across operating systems. For Windows, you import the certficate into "Trusted Root Certification Authorities". You should remove the certficate when finished running the examples.
+> How you do this varies across operating systems. For Windows, you import the certficate into "Trusted Root Certification Authorities". You should remove the certficate when finished running the orchestrations.
 
-## Running the examples
+## Running the orchestrations
 
-The examples show Keycloak orchestrated two different ways:
+The project demonstrates Keycloak orchestrated two different ways:
 
 ### Keycloak natively runs a TLS stack
 
@@ -85,24 +85,25 @@ The Keycloak documentation describes [how to modify a realm's browser authentica
 
 The built-in execution "X509/Validate Username Form" attempts to match certificate information to existing Keycloak user accounts and fails otherwise.
 
-> The examples deploy a custom plugin [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in execution to create new user accounts when an exisiting account is not found. The plugin file is `kc/create-x509-user.jar`. The examples volume mounts this file to the Keycloak container at `/opt/jboss/keycloak/standalone/deployments/create-x509-user.jar`
+Both orchestrations import the realm file `kc/stigman_realm.json`, which is configures the Authentication flow to match a certificate Common Name (CN) to a Keycloak username.
+
+> The project includes a custom plugin [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in execution to create new user accounts when an exisiting account is not found. The plugin file is `kc/create-x509-user.jar`. The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/deployments/create-x509-user.jar`
 
 
-The examples import the realm file `kc/stigman_realm.json`, which is configures the Authentication flow to match a certificate Common Name (CN) to a Keycloak username.
 
 ### Keycloak keystores
 
 #### DoD certificates
 
-In both orchestrations (native TLS and reverse proxy), Keycloak requires a keystore that contains certficates for the DoD Root CA and Intermediate CAs used to sign CAC certficates. The examples provide the file `certs/dod/dod-id-[version].p12` for this purpose.
+In both orchestrations (native TLS and reverse proxy), Keycloak requires a keystore that contains certficates for the DoD Root CA and Intermediate CAs used to sign CAC certficates. 
 
-> The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/truststore.p12`
+> The project provides the file `certs/dod/dod-id-[version].p12` for this purpose. The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/truststore.p12`
 
 #### Server certificates
 
-When Keycloak is orchestrated to provide native TLS (no reverse proxy), it requires a keystore that contains the server certificate and private key. The examples provide the file `certs/localhost/localhost.p12` for this purpose.
+When Keycloak is orchestrated to provide native TLS (no reverse proxy), it requires a keystore that contains the server certificate and private key. 
 
-> The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/servercert.p12`
+> The project provides the file `certs/localhost/localhost.p12` for this purpose. The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/servercert.p12`
 
 ### Modifying `standalone-ha.xml`
 #### Keycloak behind nginx
@@ -136,7 +137,7 @@ The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docke
 
 #### Keycloak native TLS
 
-The example volume mounts the file `kc/standalone-ha.native.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
+The orchestration volume mounts the file `kc/standalone-ha.native.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
 
 The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.native.xml#L58-L67) as children of `<server><management><security-realms>`
 
