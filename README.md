@@ -55,6 +55,28 @@ For the Keycloak reverse proxy orchestration, you can access Keycloak at:
 https://localhost/auth/
 ```
 
+## nginx configuration
+
+### Keycloak natively runs a TLS stack
+
+In this orchestratiuon, nginx provides TLS service to the API only. Client certificate authentication is unnecessary because access to the API is controlled by OIDC/OAuth2 tokens.
+
+The orchestration:
+
+- volume mounts the file `nginx/nginx-api.conf` to the nginx container at `/etc/nginx/nginx.conf`
+- volume mounts the file `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
+- volume mounts the file `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
+
+### Keycloak runs behind nginx
+
+In this orchestratiuon, nginx provides TLS service to the API and Keycloak. Client certificate authentication is required for access to the Keycloak authorization_endpoint. Client certificate authentication is unnecessary for API endpoints because access to the API is controlled by OIDC/OAuth2 tokens.
+
+The orchestration:
+
+- volume mounts the file `nginx/nginx-api.conf` to the nginx container at `/etc/nginx/nginx.conf`
+- volume mounts the file `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
+- volume mounts the file `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
+
 ## Keycloak configuration
 ### Keycloak Authentication Flow
 
@@ -84,7 +106,7 @@ When Keycloak is orchestrated to provide native TLS (no reverse proxy), it requi
 ### Modifying `standalone-ha.xml`
 #### Keycloak behind nginx
 
-The example volume mounts the file `kc/standalone-ha.nginx.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
+The orchestration volume mounts the file `kc/standalone-ha.nginx.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
 
 The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.nginx.xml#L538-L557) as children of the element `<server><profile><subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">`
 

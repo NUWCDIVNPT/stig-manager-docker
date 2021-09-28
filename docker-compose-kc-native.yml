@@ -50,7 +50,6 @@ services:
       - ./nginx/nginx-api.conf:/etc/nginx/nginx.conf
       - ./certs/localhost/localhost.crt:/etc/nginx/cert.pem
       - ./certs/localhost/localhost.key:/etc/nginx/privkey.pem
-      - ./certs/dod/dod-id-5.9.pem:/etc/nginx/dod-id.pem
       - ./nginx/index.html:/usr/share/nginx/html/index.html
     # command: [nginx-debug, '-g', 'daemon off;']
     ports:
