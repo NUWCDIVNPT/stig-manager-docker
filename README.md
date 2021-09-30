@@ -2,7 +2,7 @@
 
 ## Prerequisite: Browser CA trust
 
-The project uses a server certificate for the host `localhost` which is signed by a demonstration CA named "csmig-CA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at `certs/ca/csmig-ca.crt`.
+The project uses a server certificate for the host `localhost` which is signed by a demonstration CA named "csmig-CA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at [`certs/ca/csmig-ca.crt`](certs/ca/csmig-ca.crt).
 
 > How you do this varies across operating systems. For Windows, you import the certficate into "Trusted Root Certification Authorities". You should remove the certficate when finished running the orchestrations.
 
@@ -12,12 +12,12 @@ The project demonstrates Keycloak orchestrated two different ways:
 
 ### Keycloak natively runs a TLS stack
 
-![Keycloak native diagram](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/cac/diagrams/kc-native.svg)
+![Keycloak native diagram](diagrams/kc-native.svg)
 
 - Keycloak runs a TLS stack with client certificate verification and listens on an exposed TLS port
 - Nginx runs a TLS stack without client certificate verification and listens on an exposed TLS port. Nginx forwards traffic to the API listening on an unexposed HTTP port.
 
-To run this orchestration:
+To run this orchestration, pass the file [`docker-compose-kc-native.yml`](docker-compose-kc-native.yml) to `docker-compose up`:
  
  ```
  docker-compose -f docker-compose-kc-native.yml up
@@ -25,12 +25,12 @@ To run this orchestration:
 
 ### Keycloak runs behind nginx
 
-![Keycloak reverse diagram](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/cac/diagrams/kc-reverse.svg)
+![Keycloak reverse diagram](diagrams/kc-reverse.svg)
 
 
 - Nginx runs a TLS stack with client certificate verification and listens on an exposed TLS port. Nginx forwards traffic to both the API and Keycloak which are listening on unexposed HTTP ports
  
-To run this orchestration:
+To run this orchestration, pass the file [`docker-compose-kc-nginx.yml`](docker-compose-kc-nginx.yml) to `docker-compose up`:
 
  ```
  docker-compose -f docker-compose-kc-nginx.yml up
@@ -63,9 +63,9 @@ In this orchestratiuon, nginx provides TLS service to the API only. Client certi
 
 The orchestration:
 
-- volume mounts the file `nginx/nginx-api.conf` to the nginx container at `/etc/nginx/nginx.conf`
-- volume mounts the server certificate `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
-- volume mounts the server private key `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
+- volume mounts the file [`nginx/nginx-api.conf`](nginx/nginx-api.conf) to the nginx container at `/etc/nginx/nginx.conf`
+- volume mounts the server certificate [`certs/localhost/localhost.crt`](certs/localhost/localhost.crt) to the nginx container at `/etc/nginx/cert.pem`
+- volume mounts the server private key [`certs/localhost/localhost.key`](certs/localhost/localhost.key) to the nginx container at `/etc/nginx/privkey.pem`
 
 ### Keycloak runs behind nginx
 
@@ -73,10 +73,10 @@ In this orchestratiuon, nginx provides TLS service to the API and Keycloak. Clie
 
 The orchestration:
 
-- volume mounts the file `nginx/nginx-api-kc.conf` to the nginx container at `/etc/nginx/nginx.conf`
-- volume mounts the server certificate `certs/localhost/localhost.crt` to the nginx container at `/etc/nginx/cert.pem`
-- volume mounts the server private key `certs/localhost/localhost.key` to the nginx container at `/etc/nginx/privkey.pem`
-- volume mounts the DoD CAs in `certs/dod/dod-id-5.9.pem` to the nginx container at `/etc/nginx/dod-id.pem`
+- volume mounts the file [`nginx/nginx-api-kc.conf`](nginx/nginx-api-kc.conf) to the nginx container at `/etc/nginx/nginx.conf`
+- volume mounts the server certificate [`certs/localhost/localhost.crt`](certs/localhost/localhost.crt) to the nginx container at `/etc/nginx/cert.pem`
+- volume mounts the server private key [`certs/localhost/localhost.key`](certs/localhost/localhost.key) to the nginx container at `/etc/nginx/privkey.pem`
+- volume mounts the DoD CAs in [`certs/dod/dod-id-5.9.pem`](certs/dod/dod-id-5.9.pem) to the nginx container at `/etc/nginx/dod-id.pem`
 
 ## Keycloak configuration
 ### Keycloak Authentication Flow
@@ -85,7 +85,7 @@ The Keycloak documentation describes [how to modify a realm's browser authentica
 
 The built-in execution "X509/Validate Username Form" attempts to match certificate information to existing Keycloak user accounts and fails otherwise.
 
-Both orchestrations import the realm file `kc/stigman_realm.json`, which is configures the Authentication flow to match a certificate Common Name (CN) to a Keycloak username.
+Both orchestrations import the realm file [`kc/stigman_realm.json`](kc/stigman_realm.json), which is configures the Authentication flow to match a certificate Common Name (CN) to a Keycloak username.
 
 > The project includes a custom plugin [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in execution to create new user accounts when an exisiting account is not found. The plugin file is `kc/create-x509-user.jar`. The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/deployments/create-x509-user.jar`
 
@@ -108,7 +108,7 @@ When Keycloak is orchestrated to provide native TLS (no reverse proxy), it requi
 ### Modifying `standalone-ha.xml`
 #### Keycloak behind nginx
 
-The orchestration volume mounts the file `kc/standalone-ha.nginx.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
+The orchestration volume mounts the file [`kc/standalone-ha.nginx.xml`](kc/standalone-ha.nginx.xml) to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
 
 The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.nginx.xml#L538-L557) as children of the element `<server><profile><subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">`
 
@@ -137,7 +137,7 @@ The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docke
 
 #### Keycloak native TLS
 
-The orchestration volume mounts the file `kc/standalone-ha.native.xml` to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
+The orchestration volume mounts the file [`kc/standalone-ha.native.xml`](kc/standalone-ha.native.xml) to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
 
 The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.native.xml#L58-L67) as children of `<server><management><security-realms>`
 
