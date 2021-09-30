@@ -4,7 +4,7 @@
 
 The project uses a server certificate for the host `localhost` which is signed by a demonstration CA named "csmig-CA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at [`certs/ca/csmig-ca.crt`](certs/ca/csmig-ca.crt).
 
-> How you do this varies across operating systems. For Windows, you import the certficate into "Trusted Root Certification Authorities". You should remove the certficate when finished running the orchestrations.
+> How you do this varies across operating systems. For Windows, you import the certificate into "Trusted Root Certification Authorities". You should remove the certificate when finished running the orchestrations.
 
 ## Quick links
 
@@ -15,7 +15,7 @@ The project uses a server certificate for the host `localhost` which is signed b
   - [Keycloak native TLS](#keycloak-natively-runs-a-tls-stack-1)
   - [Keycloak behind nginx](#keycloak-runs-behind-nginx-1)
 - [Keycloak configuration](#keycloak-configuration)
-  - [Authenication flow](#keycloak-authentication-flow)
+  - [Authentication flow](#keycloak-authentication-flow)
   - [Keystores](#keycloak-keystores)
   - [Modifying standalone-ha.xml](#modifying-standalone-haxml)
 
@@ -50,7 +50,7 @@ To run this orchestration, pass the file [`docker-compose-kc-nginx.yml`](docker-
  ```
 ### Connecting to STIG Manager and Keycloak
 
-For both orchetrations, once STIG Manager starts point your browser at:
+For both orchestrations, once STIG Manager starts point your browser at:
 
 ```
 https://localhost/stigman/
@@ -68,11 +68,13 @@ For the Keycloak reverse proxy orchestration, you can access Keycloak at:
 https://localhost/auth/
 ```
 
+> After using Chrome to HTTPS connect to `https://localhost`, you may find Chrome will not make HTTP connections to `http://localhost:[ANY_PORT]`. Once you're finished with these examples, see [this note](#to-clear-chrome-hsts-entry-for-localhost-perhaps) for how to remedy this.
+
 ## nginx configuration
 
 ### Keycloak natively runs a TLS stack
 
-In this orchestratiuon, nginx provides TLS service to the API only. Client certificate authentication is unnecessary because access to the API is controlled by OIDC/OAuth2 tokens.
+In this orchestration, nginx provides TLS service to the API only. Client certificate authentication is unnecessary because access to the API is controlled by OIDC/OAuth2 tokens.
 
 The orchestration:
 
@@ -82,7 +84,7 @@ The orchestration:
 
 ### Keycloak runs behind nginx
 
-In this orchestratiuon, nginx provides TLS service to the API and Keycloak. Client certificate authentication is required for access to the Keycloak authorization_endpoint. Client certificate authentication is unnecessary for API endpoints because access to the API is controlled by OIDC/OAuth2 tokens.
+In this orchestration, nginx provides TLS service to the API and Keycloak. Client certificate authentication is required for access to the Keycloak authorization_endpoint. Client certificate authentication is unnecessary for API endpoints because access to the API is controlled by OIDC/OAuth2 tokens.
 
 The orchestration:
 
@@ -108,7 +110,7 @@ Both orchestrations import the realm file [`kc/stigman_realm.json`](kc/stigman_r
 
 #### DoD certificates
 
-In both orchestrations (native TLS and reverse proxy), Keycloak requires a keystore that contains certficates for the DoD Root CA and Intermediate CAs used to sign CAC certficates. 
+In both orchestrations (native TLS and reverse proxy), Keycloak requires a keystore that contains certificates for the DoD Root CA and Intermediate CAs used to sign CAC certificates. 
 
 > The project provides the file `certs/dod/dod-id-[version].p12` for this purpose. The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/truststore.p12`
 
