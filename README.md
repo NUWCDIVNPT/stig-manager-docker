@@ -6,6 +6,19 @@ The project uses a server certificate for the host `localhost` which is signed b
 
 > How you do this varies across operating systems. For Windows, you import the certficate into "Trusted Root Certification Authorities". You should remove the certficate when finished running the orchestrations.
 
+## Quick links
+
+- [Running the orchestrations](#running-the-orchestrations)
+  - [Keycloak native TLS](#keycloak-natively-runs-a-tls-stack)
+  - [Keycloak behind nginx](#keycloak-runs-behind-nginx)
+- [Nginx configuration](#nginx-configuration)
+  - [Keycloak native TLS](#keycloak-natively-runs-a-tls-stack-1)
+  - [Keycloak behind nginx](#keycloak-runs-behind-nginx-1)
+- [Keycloak configuration](#keycloak-configuration)
+  - [Authenication flow](#keycloak-authentication-flow)
+  - [Keystores](#keycloak-keystores)
+  - [Modifying standalone-ha.xml](#modifying-standalone-haxml)
+
 ## Running the orchestrations
 
 The project demonstrates Keycloak orchestrated two different ways:
