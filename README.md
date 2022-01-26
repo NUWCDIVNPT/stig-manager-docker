@@ -96,7 +96,7 @@ The orchestration:
 ## Keycloak configuration
 ### Keycloak Authentication Flow
 
-The Keycloak documentation describes [how to modify a realm's browser authentication flow to incude X.509 client certificates](https://www.keycloak.org/docs/latest/server_admin/#adding-x-509-client-certificate-authentication-to-a-browser-flow).
+The Keycloak documentation describes [how to modify a realm's browser authentication flow to incude X.509 client certificates](https://www.keycloak.org/docs/15.0/server_admin/#adding-x-509-client-certificate-authentication-to-a-browser-flow).
 
 The built-in execution "X509/Validate Username Form" attempts to match certificate information to existing Keycloak user accounts and fails otherwise.
 
