@@ -477,7 +477,7 @@
   }, {
     "id" : "1db6b6af-ee0b-447b-acca-729e1579cd2d",
     "createdTimestamp" : 1632510508036,
-    "username" : "smigielski.carl.a.1263907040-x",
+    "username" : "smigielski.carl.a.1263907040",
     "enabled" : true,
     "totp" : false,
     "emailVerified" : true,
@@ -1848,18 +1848,10 @@
       "userSetupAllowed" : false,
       "autheticatorFlow" : false
     }, {
-      "authenticatorConfig" : "create-user",
-      "authenticator" : "auth-x509-client-create-form",
-      "authenticatorFlow" : false,
-      "requirement" : "ALTERNATIVE",
-      "priority" : 30,
-      "userSetupAllowed" : false,
-      "autheticatorFlow" : false
-    }, {
       "authenticatorConfig" : "x509-form-config",
       "authenticator" : "auth-x509-client-username-form",
       "authenticatorFlow" : false,
-      "requirement" : "DISABLED",
+      "requirement" : "ALTERNATIVE",
       "priority" : 31,
       "userSetupAllowed" : false,
       "autheticatorFlow" : false

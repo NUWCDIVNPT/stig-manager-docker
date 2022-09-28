@@ -5,8 +5,8 @@ version: '3.7'
 services:
   db:
     image: mysql:8.0
-    # ports:
-    #   - "50001:3306"
+    ports:
+      - "50001:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=rootpw
       - MYSQL_USER=stigman
@@ -14,11 +14,14 @@ services:
       - MYSQL_PASSWORD=stigmanpw
     cap_add:
       - SYS_NICE  # workaround MySQL logging bug => mbind: Operation not permitted
+    # volumes:
+    #   - ./mysql-data:/var/lib/mysql
+
   api:
     image: nuwcdivnpt/stig-manager
     environment:
-      - STIGMAN_OIDC_PROVIDER=http://auth:8080/auth/realms/stigman
-      - STIGMAN_CLIENT_OIDC_PROVIDER=https://localhost/auth/realms/stigman
+      - STIGMAN_OIDC_PROVIDER=http://auth:8080/realms/stigman
+      - STIGMAN_CLIENT_OIDC_PROVIDER=https://trinity.localdomain/kc/realms/stigman
       - STIGMAN_CLASSIFICATION=U
       - STIGMAN_DB_HOST=db
       - STIGMAN_DB_USER=stigman
@@ -29,19 +32,38 @@ services:
     # ports:
     #   - "54000:54000"
   auth:
-    image: jboss/keycloak:15.0.0
+    image: quay.io/keycloak/keycloak:19.0.2
     environment:
-      - PROXY_ADDRESS_FORWARDING=true
-      - DB_VENDOR=H2
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=Pa55w0rd
-      - KEYCLOAK_IMPORT=/tmp/import_realm.json
+      # - KC_DB=mysql
+      # - KC_DB_URL_HOST=db
+      # - KC_DB_USERNAME=stigman
+      # - KC_DB_PASSWORD=stigmanpw
+      # - KC_DB_SCHEMA=stigman
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=Pa55w0rd
+      - KC_PROXY=edge
+      # - KC_IMPORT_REALM=1
+      # - KC_HOSTNAME=trinity.localdomain
+      - KC_HOSTNAME_URL=https://trinity.localdomain/kc/
+      - KC_HOSTNAME_ADMIN_URL=https://trinity.localdomain/kc/
+      - KC_SPI_X509CERT_LOOKUP_PROVIDER=nginx
+      - KC_SPI_X509CERT_LOOKUP_NGINX_SSL_CLIENT_CERT=SSL-CLIENT-CERT
+      - KC_SPI_X509CERT_LOOKUP_NGINX_SSL_CERT_CHAIN_PREFIX=useless
+      - KC_SPI_X509CERT_LOOKUP_NGINX_CERTIFICATE_CHAIN_LENGTH=2
+      # - KC_HTTPS_KEY_STORE_FILE=/tmp/servercert.p12
+      # - KC_HTTPS_KEY_STORE_PASSWORD=password
+      - KC_HTTPS_TRUST_STORE_FILE=/tmp/truststore.p12
+      - KC_HTTPS_TRUST_STORE_PASSWORD=password
+      - KC_SPI_TRUSTSTORE_FILE_FILE=/tmp/truststore.p12
+      - KC_SPI_TRUSTSTORE_FILE_PASSWORD=password
+      # - KC_HTTPS_CLIENT_AUTH=required
+      # # - KC_HTTPS_PROTOCOLS=TLSv1.3,TLSv1.2
+      # - KC_LOG_LEVEL=all
+    command: start --import-realm
     volumes:
-      - ./kc/standalone-ha.nginx.xml:/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
-      - ./certs/localhost/localhost.p12:/opt/jboss/keycloak/standalone/configuration/servercert.p12
-      - ./certs/dod/dod-id-5.9.p12:/opt/jboss/keycloak/standalone/configuration/truststore.p12
-      - ./kc/create-x509-user.jar:/opt/jboss/keycloak/standalone/deployments/create-x509-user.jar
-      - ./kc/stigman_realm.json:/tmp/import_realm.json
+      - ./certs/trinity.localdomain/trinity.localdomain.p12:/tmp/servercert.p12
+      - ./certs/dod/dod-id-5.9.p12:/tmp/truststore.p12
+      - ./kc/stigman_realm.json:/opt/keycloak/data/import/stigman_realm.json
     # ports:
     #   - "8080:8080"
     #   - "8443:8443"
@@ -49,8 +71,8 @@ services:
     image: nginx:latest
     volumes:
       - ./nginx/nginx-api-kc.conf:/etc/nginx/nginx.conf
-      - ./certs/localhost/localhost.crt:/etc/nginx/cert.pem
-      - ./certs/localhost/localhost.key:/etc/nginx/privkey.pem
+      - ./certs/trinity.localdomain/trinity.localdomain.crt:/etc/nginx/cert.pem
+      - ./certs/trinity.localdomain/trinity.localdomain.key:/etc/nginx/privkey.pem
       - ./certs/dod/dod-id-5.9.pem:/etc/nginx/dod-id.pem
       - ./nginx/index.html:/usr/share/nginx/html/index.html
     # command: [nginx-debug, '-g', 'daemon off;']
