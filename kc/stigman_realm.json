@@ -73,7 +73,7 @@
       "description" : "${role_default-roles}",
       "composite" : true,
       "composites" : {
-        "realm" : [ "create_collection", "user" ],
+        "realm" : [ "create_collection", "admin" ],
         "client" : {
           "realm-management" : [ "view-users" ],
           "account" : [ "view-profile", "manage-account" ]
@@ -436,28 +436,7 @@
   "webAuthnPolicyPasswordlessCreateTimeout" : 0,
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister" : false,
   "webAuthnPolicyPasswordlessAcceptableAaguids" : [ ],
-  "users" : [ {
-    "id" : "bf87a16f-39e6-46d9-8971-f0ef51dd3f85",
-    "username" : "admin",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : false,
-    "firstName" : "Admin",
-    "lastName" : "Burke",
-    "email" : "admin@admin.com",
-    "credentials" : [ {
-      "id" : "da2745cf-fdd1-4efd-a866-6a32d9cc081c",
-      "type" : "password",
-      "createdDate" : 1584023345650,
-      "secretData" : "{\"value\":\"CHxTjNmprgw5F0i6j/DRZ5lJn9UgbSsImiAoibRaK9Do5IljwFSg9EYuqFjI0iLdupiM9ij1Irlwzhd6jhTsEw==\",\"salt\":\"PRk7wGTu7V22EoQjRK1lXw==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "user", "create_collection", "admin" ],
-    "notBefore" : 0,
-    "groups" : [ "/group01", "/group02", "/group03" ]
-  }, {
+  "users" : [{
     "id" : "93bdf280-3e2c-4025-8ebc-efdbfbbddead",
     "createdTimestamp" : 1602029221544,
     "username" : "service-account-stigman-watcher",
@@ -474,169 +453,7 @@
     },
     "notBefore" : 0,
     "groups" : [ ]
-  }, {
-    "id" : "1db6b6af-ee0b-447b-acca-729e1579cd2d",
-    "createdTimestamp" : 1632510508036,
-    "username" : "smigielski.carl.a.1263907040",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "Carl",
-    "lastName" : "Cac",
-    "credentials" : [ ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "default-roles-stigman" ],
-    "notBefore" : 0,
-    "groups" : [ ]
-  }, {
-    "id" : "b7c78a62-b84f-4578-a983-2ebc66fd9efe",
-    "createdTimestamp" : 1625244410594,
-    "username" : "stigmanadmin",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "STIGMAN",
-    "lastName" : "Admin",
-    "email" : "stigmanadmin@admin.com",
-    "credentials" : [ {
-      "id" : "0515b257-c755-4dc0-bc5d-ef6e25da04fc",
-      "type" : "password",
-      "createdDate" : 1625244424320,
-      "secretData" : "{\"value\":\"eludQOJHGsShBlzhXrt2tstRMbSsatv9jndcs9/v3+sKFxc0mtfJXptk02q+IhPKL6ONMFyfQs/nWt0K+fGQmw==\",\"salt\":\"IL9p6skcDpjNBsSBT5JDpg==\",\"additionalParameters\":{}}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\",\"additionalParameters\":{}}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "user", "create_collection", "admin" ],
-    "notBefore" : 0,
-    "groups" : [ ]
-  }, {
-    "id" : "76da8a88-fb48-4477-a920-d88a6b8747fa",
-    "createdTimestamp" : 1592844679893,
-    "username" : "user01",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "Marley",
-    "lastName" : "Atkinson",
-    "email" : "user01@noemail",
-    "credentials" : [ {
-      "id" : "b19685df-8b2a-4881-b86e-f6273183bd09",
-      "type" : "password",
-      "createdDate" : 1592844693537,
-      "secretData" : "{\"value\":\"kA0lJogOcL2D2uSXEjkGdfOHJMGoYY4MzLW+ZrjJgbsci9xARWNfXgZajBGcKQmSDLH90m58Nn0bMpQOp75yRg==\",\"salt\":\"oQz97hf0Vm4O6+mObgEh/w==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "user" ],
-    "clientRoles" : {
-      "account" : [ "view-profile", "manage-account" ]
-    },
-    "notBefore" : 0,
-    "groups" : [ "/group01" ]
-  }, {
-    "id" : "c4c86a44-430f-4b88-a4ca-c902ce724dd8",
-    "createdTimestamp" : 1592844730761,
-    "username" : "user02",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "Justice",
-    "lastName" : "Moore",
-    "email" : "user02@no.email",
-    "credentials" : [ {
-      "id" : "6b855b02-6764-42de-8aa2-e06b25ec58b9",
-      "type" : "password",
-      "createdDate" : 1592844744242,
-      "secretData" : "{\"value\":\"kpNGdfcQJMgWBHhEI4ev9cxS2zSgSFtEG/7BwPELUsHuxP1YmuZbXegXXifbJ+8mdAxraJlXMlXMpcmNP7WB7A==\",\"salt\":\"RfQP7rlxLwtZ4Dcovz2psg==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "user" ],
-    "clientRoles" : {
-      "account" : [ "view-profile", "manage-account" ]
-    },
-    "notBefore" : 0,
-    "groups" : [ "/group02" ]
-  }, {
-    "id" : "9e2d33e0-b0fa-4213-8790-0d11e249f996",
-    "createdTimestamp" : 1592844764866,
-    "username" : "user03",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "Rory",
-    "lastName" : "Marshall",
-    "email" : "user03@no.email",
-    "credentials" : [ {
-      "id" : "89751e8c-7545-47b4-abdb-eb77c9e9b6ae",
-      "type" : "password",
-      "createdDate" : 1592844776399,
-      "secretData" : "{\"value\":\"uczTxg7DHj3LuP3Iy/jbZNBHC8iavkf5BEhn5944b1d/eekwXbpoRbm7/ifpqhEkm0ghxN9YBomAbL1jsXSk7Q==\",\"salt\":\"NxQIOBKdWBeCr6ABxxBBFQ==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "user" ],
-    "clientRoles" : {
-      "account" : [ "view-profile", "manage-account" ]
-    },
-    "notBefore" : 0,
-    "groups" : [ "/group03" ]
-  }, {
-    "id" : "918c935a-0f9b-4aab-909e-3eb995ae269d",
-    "createdTimestamp" : 1592844794188,
-    "username" : "user04",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "Raylee",
-    "lastName" : "Atkinson",
-    "email" : "user04@no.email",
-    "credentials" : [ {
-      "id" : "9d0b7703-2000-46cf-9f47-5e92eea2ec8d",
-      "type" : "password",
-      "createdDate" : 1592844810265,
-      "secretData" : "{\"value\":\"v5QZOerRbWUxCoYWNnqYV2BBNVZpAzeWp0yI51FccADeH+6TVajFBo4cP7PD5o47H6qTaECxIHcSlbgiQ+Epiw==\",\"salt\":\"hbRFILB/gYLRAD0Bq1sQ5A==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "realmRoles" : [ "user", "create_collection" ],
-    "clientRoles" : {
-      "realm-management" : [ "view-realm", "view-clients" ],
-      "account" : [ "view-profile", "manage-account" ]
-    },
-    "notBefore" : 1602129387,
-    "groups" : [ ]
-  }, {
-    "id" : "5ee8bd66-5acf-4d9a-b538-9d2b2d44cddb",
-    "createdTimestamp" : 1592844834017,
-    "username" : "user05",
-    "enabled" : true,
-    "totp" : false,
-    "emailVerified" : true,
-    "firstName" : "05",
-    "lastName" : "User",
-    "email" : "user05@no.email",
-    "credentials" : [ {
-      "id" : "a7faeb68-02b1-4ec7-b97f-cf6eac830771",
-      "type" : "password",
-      "createdDate" : 1592844844968,
-      "secretData" : "{\"value\":\"5gKHbszzd4hsH0Ut9y2jVynI/fe0XFV9Gnhb4L4+xW98vaY6UFKprVD8W4/vBojUknKz6q8VfqfrVhmKbyc/Zg==\",\"salt\":\"ocM9BimRrdvDGh9MhrqDhA==\"}",
-      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
-    } ],
-    "disableableCredentialTypes" : [ ],
-    "requiredActions" : [ ],
-    "clientRoles" : {
-      "account" : [ "view-profile", "manage-account" ]
-    },
-    "notBefore" : 1625243718,
-    "groups" : [ ]
-  } ],
+  }],
   "scopeMappings" : [ {
     "clientScope" : "stig-manager:collection",
     "roles" : [ "user" ]
