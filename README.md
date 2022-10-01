@@ -2,9 +2,9 @@
 
 ## Prerequisite: Browser CA trust
 
-The project uses a server certificate for the host `localhost` which is signed by a demonstration CA named "csmig-CA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at [`certs/ca/csmig-ca.crt`](certs/ca/csmig-ca.crt).
+The project uses a server certificate for the host `localhost` which is signed by a demonstration CA named "demoCA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at [`certs/ca/demoCA.crt`](certs/ca/demoCA.crt).
 
-> How you do this varies across operating systems. For Windows, you import the certificate into "Trusted Root Certification Authorities". You should remove the certificate when finished running the orchestrations.
+> How you do this varies across operating systems and browsers. For Windows, you import the certificate into "Trusted Root Certification Authorities". You should remove the certificate when finished running the orchestrations.
 
 ## Quick links
 
@@ -38,7 +38,7 @@ To run this orchestration, pass the file [`docker-compose-kc-native.yml`](docker
 
 ### Keycloak runs behind nginx
 
-![Keycloak reverse diagram](diagrams/kc-reverse.svg)
+![Keycloak reverse diagram](diagrams/kc-reverse-1.svg)
 
 
 - Nginx runs a TLS stack with client certificate verification and listens on an exposed TLS port. Nginx forwards traffic to both the API and Keycloak which are listening on unexposed HTTP ports
