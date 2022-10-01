@@ -253,7 +253,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     style="opacity:0.974"
+     style="opacity:0.98599995"
      transform="translate(-43.347799,-38.457384)">
     <rect
        style="fill:#b1dcf2;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
@@ -287,14 +287,14 @@
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.170425"
-       x="119.92637"
-       y="81.565575"
+       x="120.52112"
+       y="81.456657"
        id="text870"><tspan
          sodipodi:role="line"
          id="tspan868"
-         x="119.92637"
-         y="81.565575"
-         style="stroke-width:0.170425">nginx</tspan></text>
+         x="120.52112"
+         y="81.456657"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.76111px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.170425">nginx</tspan></text>
     <rect
        style="fill:#baedc6;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect889"
@@ -307,14 +307,14 @@
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.170425"
-       x="186.46545"
-       y="95.645004"
+       x="177.26913"
+       y="94.72924"
        id="text887"><tspan
          sodipodi:role="line"
          id="tspan885"
-         x="186.46545"
-         y="95.645004"
-         style="stroke-width:0.170425">api</tspan></text>
+         x="177.26913"
+         y="94.72924"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.76111px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.170425">stigman</tspan></text>
     <rect
        style="fill:#baedc6;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect916"
@@ -327,14 +327,14 @@
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.170425"
-       x="173.85408"
-       y="66.018852"
+       x="175.30234"
+       y="65.909927"
        id="text914"><tspan
          sodipodi:role="line"
          id="tspan912"
-         x="173.85408"
-         y="66.018852"
-         style="stroke-width:0.170425">keycloak</tspan></text>
+         x="175.30234"
+         y="65.909927"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.76111px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.170425">keycloak</tspan></text>
     <path
        style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.159542;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#marker5944)"
        d="M 153.71315,79.097173 170.00668,64.168629"
@@ -356,14 +356,14 @@
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.170425"
-       x="181.35278"
-       y="124.4234"
+       x="181.25391"
+       y="123.50763"
        id="text3680"><tspan
          sodipodi:role="line"
          id="tspan3678"
-         x="181.35278"
-         y="124.4234"
-         style="stroke-width:0.170425">mysql</tspan></text>
+         x="181.25391"
+         y="123.50763"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.76111px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.170425">mysql</tspan></text>
     <path
        style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.170425px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:url(#marker5846)"
        d="m 191.8626,103.2272 v 7.97528"
@@ -464,5 +464,30 @@
        y="38.568382"
        rx="2.6019065"
        ry="2.4351311" />
+    <rect
+       style="fill:#b1dcf2;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect9536"
+       width="44.656738"
+       height="20.007576"
+       x="47.288017"
+       y="69.436798"
+       rx="1.9323781"
+       ry="1.9323781" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:8.1804px;line-height:0;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.170425"
+       x="69.686668"
+       y="78.735031"
+       id="text9540"><tspan
+         sodipodi:role="line"
+         id="tspan9538"
+         x="69.686668"
+         y="78.735031"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;line-height:0.95;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.170425">browser</tspan><tspan
+         sodipodi:role="line"
+         x="69.686668"
+         y="84.379471"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;line-height:1.05;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.170425"
+         id="tspan9542">with CAC</tspan></text>
   </g>
 </svg>

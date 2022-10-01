@@ -1,97 +1,87 @@
-# Using Keycloak with TLS and CAC authentication
+# Deploying STIG Manager with TLS and CAC Authentication
 
-## Prerequisite: Browser CA trust
+## Scope of the example
 
-The project uses a server certificate for the host `localhost` which is signed by a demonstration CA named "demoCA". For the examples to work, you must (temporarily) import and trust this CA certificate, found at [`certs/ca/demoCA.crt`](certs/ca/demoCA.crt).
+This project provides an example orchestration for deploying the STIG Manager API with support for user authentication incorporating the U.S. Department of Defense Common Access Card (CAC). **The example is provided as a proof of concept limited to connections from `localhost` and is NOT intended for production use.**
+
+However, the concept demonstrated is applicable to a range of production deployments. For smaller teams, minor enhancements to the example may be all that is necessary to create an acceptable deployment.
+
+## General architecture
+
+![Keycloak native diagram](diagrams/kc-reverse-1.svg)
+
+- The `nginx` reverse proxy executes a TLS stack with client certificate verification and listens on an exposed frontend HTTPS port.
+- `nginx` proxies traffic to `stigman` and `keycloak` which are listening on unexposed backend HTTP ports.
+- `stigman` communicates with `keycloak` via Keycloak's unexposed backend port using HTTP and with `mysql` via MySQL's unexposed backend port using the MySQL Protocol.
+- End users located at `browser with CAC` connect to `nginx` on the exposed frontend HTTPS port and request resources from `stigman` and `keycloak`. These resources include the Keycloak authentication service, the STIG Manager API, and the STIG Manager Web App.
+
+This general architecture can be implemented with a wide ramge of technologies, from bare-metal deployments to complex containerized orchestrations. The example uses a simple docker-compose orchestration. 
+
+## Dependencies for running the example
+
+- Recent Windows, Linux, or macOS
+- CAC reader configured for your OS
+- docker
+- docker-compose
+- Chrome, Edge, or Firefox browser
+
+The example uses a server certificate issued to the host `localhost` and signed by a demonstration CA named "demoCA". For the example to work, you must (temporarily) import trust in your browser for the demoCA certificate, found at [`certs/ca/demoCA.crt`](certs/ca/demoCA.crt).
 
 > How you do this varies across operating systems and browsers. For Windows, you import the certificate into "Trusted Root Certification Authorities". You should remove the certificate when finished running the orchestrations.
 
-## Quick links
+## Getting the example files
 
-- [Running the orchestrations](#running-the-orchestrations)
-  - [Keycloak native TLS](#keycloak-natively-runs-a-tls-stack)
-  - [Keycloak behind nginx](#keycloak-runs-behind-nginx)
-- [Nginx configuration](#nginx-configuration)
-  - [Keycloak native TLS](#keycloak-natively-runs-a-tls-stack-1)
-  - [Keycloak behind nginx](#keycloak-runs-behind-nginx-1)
-- [Keycloak configuration](#keycloak-configuration)
-  - [Authentication flow](#keycloak-authentication-flow)
-  - [Keystores](#keycloak-keystores)
-  - [Modifying standalone-ha.xml](#modifying-standalone-haxml)
+You have two options:
 
-## Running the orchestrations
+- If you have `git` installed, navigate to an appropriate directory and execute the command `git clone https://github.com/NUWCDIVNPT/stig-manager-cac-example.git`. Then change directory to `stig-manager-cac-example`.
 
-The project demonstrates Keycloak orchestrated two different ways:
+- Use the "Download ZIP" option of this repository to download the files. Extract the files to an appropriate directory and change to that directory.
 
-### Keycloak natively runs a TLS stack
+## Running the orchestration
 
-![Keycloak native diagram](diagrams/kc-native.svg)
+```
+docker-compose -p cac-example up
+```
 
-- Keycloak runs a TLS stack with client certificate verification and listens on an exposed TLS port
-- Nginx runs a TLS stack without client certificate verification and listens on an exposed TLS port. Nginx forwards traffic to the API listening on an unexposed HTTP port.
+The orchestration has successfully bootstrapped when you see a `started` message like this from STIG Manager API:
 
-To run this orchestration, pass the file [`docker-compose-kc-native.yml`](docker-compose-kc-native.yml) to `docker-compose up`:
- 
- ```
- docker-compose -f docker-compose-kc-native.yml up
- ```
+```
+cac-example-stigman-1   | {"date":"2022-10-01T18:04:26.734Z","level":3,"component":"index","type":"started","data":{"durationS":21.180474449,"port":54000,"api":"/api","client":"/","documentation":"/docs"}}
+```
 
-### Keycloak runs behind nginx
+The orchestration will continue to run until you type `Ctrl-C` to end it.
 
-![Keycloak reverse diagram](diagrams/kc-reverse-1.svg)
+## Authenticating to STIG Manager with CAC
 
-
-- Nginx runs a TLS stack with client certificate verification and listens on an exposed TLS port. Nginx forwards traffic to both the API and Keycloak which are listening on unexposed HTTP ports
- 
-To run this orchestration, pass the file [`docker-compose-kc-nginx.yml`](docker-compose-kc-nginx.yml) to `docker-compose up`:
-
- ```
- docker-compose -f docker-compose-kc-nginx.yml up
- ```
-### Connecting to STIG Manager and Keycloak
-
-For both orchestrations, once STIG Manager starts point your browser at:
+Once STIG Manager has started, navigate your browser to:
 
 ```
 https://localhost/stigman/
 ```
 
-For the Keycloak native orchestration, you can access Keycloak at:
+- The STIG Manager Web App is fetched from the `stigman` service and executed in your browser. The Web App will redirect you to Keycloak for authentication.
+- Keycloak will prompt you to select a certificate from your PIN-protected CAC to use with your authentication.
+- After your certficate is validated, Keycloak will create a new account using your certificate's Common Name (CN) and configure that account with the roles "Application Management" and "Create Collection".
+- Keycloak will provide the Web App with an OAuth2 token that contains your identity and application roles/scopes. This token is used by the Web App to make requests to STIG Manager API endpoints.
+
+You can access the Keycloak admin pages by navigating to:
 
 ```
-https://localhost:8443/
+https://localhost/kc/admin
 ```
 
-For the Keycloak reverse proxy orchestration, you can access Keycloak at:
+> After using Chrome to HTTPS connect to `https://localhost`, you may find Chrome will no longer make HTTP connections to `http://localhost:[ANY_PORT]`. Once you're finished with the example, see [this note](#to-clear-chrome-hsts-entry-for-localhost-perhaps) for how to remedy this.
 
-```
-https://localhost/auth/
-```
+## `nginx` configuration
 
-> After using Chrome to HTTPS connect to `https://localhost`, you may find Chrome will not make HTTP connections to `http://localhost:[ANY_PORT]`. Once you're finished with these examples, see [this note](#to-clear-chrome-hsts-entry-for-localhost-perhaps) for how to remedy this.
-
-## nginx configuration
-
-### Keycloak natively runs a TLS stack
-
-In this orchestration, nginx provides TLS service to the API only. Client certificate authentication is unnecessary because access to the API is controlled by OIDC/OAuth2 tokens.
+`nginx` provides TLS service for the STIG Manager API and Keycloak. Client certificate authentication is **required** for access to the Keycloak `authorization_endpoint`. Client certificate authentication is **optional** for API endpoints because access to the API is controlled by OIDC/OAuth2 tokens.
 
 The orchestration:
 
-- volume mounts the file [`nginx/nginx-api.conf`](nginx/nginx-api.conf) to the nginx container at `/etc/nginx/nginx.conf`
-- volume mounts the server certificate [`certs/localhost/localhost.crt`](certs/localhost/localhost.crt) to the nginx container at `/etc/nginx/cert.pem`
-- volume mounts the server private key [`certs/localhost/localhost.key`](certs/localhost/localhost.key) to the nginx container at `/etc/nginx/privkey.pem`
-
-### Keycloak runs behind nginx
-
-In this orchestration, nginx provides TLS service to the API and Keycloak. Client certificate authentication is required for access to the Keycloak authorization_endpoint. Client certificate authentication is unnecessary for API endpoints because access to the API is controlled by OIDC/OAuth2 tokens.
-
-The orchestration:
-
-- volume mounts the file [`nginx/nginx-api-kc.conf`](nginx/nginx-api-kc.conf) to the nginx container at `/etc/nginx/nginx.conf`
-- volume mounts the server certificate [`certs/localhost/localhost.crt`](certs/localhost/localhost.crt) to the nginx container at `/etc/nginx/cert.pem`
-- volume mounts the server private key [`certs/localhost/localhost.key`](certs/localhost/localhost.key) to the nginx container at `/etc/nginx/privkey.pem`
-- volume mounts the DoD CAs in [`certs/dod/dod-id-5.9.pem`](certs/dod/dod-id-5.9.pem) to the nginx container at `/etc/nginx/dod-id.pem`
+- volume mounts the file [`nginx/nginx.conf`](nginx/nginx.conf) to the `nginx` container at `/etc/nginx/nginx.conf`
+- volume mounts the server certificate [`certs/localhost/localhost.crt`](certs/localhost/localhost.crt) to the `nginx` container at `/etc/nginx/cert.pem`
+- volume mounts the server private key [`certs/localhost/localhost.key`](certs/localhost/localhost.key) to the `nginx` container at `/etc/nginx/privkey.pem`
+- volume mounts the DoD CAs in [`certs/dod/Certificates_PKCS7_v5.9_DoD.pem.pem`](certs/dod/Certificates_PKCS7_v5.9_DoD.pem.pem) to the nginx container at `/etc/nginx/dod-certs.pem`
 
 ## Keycloak configuration
 ### Keycloak Authentication Flow
@@ -120,60 +110,7 @@ When Keycloak is orchestrated to provide native TLS (no reverse proxy), it requi
 
 > The project provides the file `certs/localhost/localhost.p12` for this purpose. The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/servercert.p12`
 
-### Modifying `standalone-ha.xml`
-#### Keycloak behind nginx
 
-The orchestration volume mounts the file [`kc/standalone-ha.nginx.xml`](kc/standalone-ha.nginx.xml) to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
-
-The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.nginx.xml#L538-L557) as children of the element `<server><profile><subsystem xmlns="urn:jboss:domain:keycloak-server:1.1">`
-
-```
-<spi name="x509cert-lookup">
-  <default-provider>nginx</default-provider>
-  <provider name="nginx" enabled="true">
-      <properties>
-          <property name="sslClientCert" value="ssl-client-cert"/>
-          <property name="sslCertChainPrefix" value="USELESS"/>
-          <property name="certificateChainLength" value="2"/>
-      </properties>
-  </provider>
-</spi>
-<spi name="truststore">
-  <provider name="file" enabled="true">
-      <properties>
-          <property name="file" value="/opt/jboss/keycloak/standalone/configuration/truststore.p12"/>
-          <property name="password" value="password"/>
-          <property name="hostname-verification-policy" value="WILDCARD"/>
-          <property name="enabled" value="true"/>
-      </properties>
-  </provider>
-</spi>
-```
-
-#### Keycloak native TLS
-
-The orchestration volume mounts the file [`kc/standalone-ha.native.xml`](kc/standalone-ha.native.xml) to the Keycloak container at `/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml`.
-
-The file includes [these lines](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.native.xml#L58-L67) as children of `<server><management><security-realms>`
-
-```
-<security-realm name="ssl-realm">
-  <server-identities>
-      <ssl>
-          <keystore path="servercert.p12" relative-to="jboss.server.config.dir" keystore-password="password"/>
-      </ssl>
-  </server-identities>
-  <authentication>
-      <truststore path="truststore.p12" relative-to="jboss.server.config.dir" keystore-password="password"/>
-  </authentication>
-</security-realm>      
-```
-
-and [this line](https://github.com/NUWCDIVNPT/stig-manager-docker-compose/blob/8e1c24a1468e215bdb06a1e451a58bee2b7cef34/tls/kc/standalone-ha.native.xml#L644) as a child of `<server><profile><subsystem xmlns="urn:jboss:domain:undertow:12.0">`
-
-```
-<https-listener name="https" socket-binding="https" security-realm="ssl-realm" verify-client="REQUESTED"/>
-```
 
 ## Notes
 ### Make pkcs12 archive from cert and private key

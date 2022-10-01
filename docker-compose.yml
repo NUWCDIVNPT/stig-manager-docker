@@ -3,7 +3,7 @@
 version: '3.7'
 
 services:
-  db:
+  mysql:
     # image: mysql:8.0
     image: registry1.dso.mil/ironbank/opensource/mysql/mysql8 
     environment:
@@ -15,19 +15,19 @@ services:
     # volumes:
     #   - ./mysql-data:/var/lib/mysql
 
-  api:
+  stigman:
     image: nuwcdivnpt/stig-manager:latest
     environment:
-      - STIGMAN_OIDC_PROVIDER=http://auth:8080/realms/stigman
+      - STIGMAN_OIDC_PROVIDER=http://keycloak:8080/realms/stigman
       - STIGMAN_CLIENT_OIDC_PROVIDER=https://localhost/kc/realms/stigman
       - STIGMAN_CLASSIFICATION=U
-      - STIGMAN_DB_HOST=db
+      - STIGMAN_DB_HOST=mysql
       - STIGMAN_DB_USER=stigman
       - STIGMAN_DB_PASSWORD=stigmanpw
       # uncomment line below to fetch current STIG library from DISA and import it
       # - STIGMAN_INIT_IMPORT_STIGS=true
     init: true
-  auth:
+  keycloak:
     # image: quay.io/keycloak/keycloak:19.0.2
     image: registry1.dso.mil/ironbank/opensource/keycloak/keycloak:19.0.2
     environment:
