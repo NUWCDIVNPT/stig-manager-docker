@@ -18,7 +18,7 @@
      id="defs2">
     <marker
        style="overflow:visible"
-       id="marker4630"
+       id="marker5944"
        refX="0"
        refY="0"
        orient="auto"
@@ -26,9 +26,65 @@
        inkscape:isstock="true">
       <path
          transform="matrix(0.8,0,0,0.8,-4.8,0)"
-         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         style="fill:#919191;fill-rule:evenodd;stroke:#999999;stroke-width:1pt;stroke-opacity:1;fill-opacity:1"
          d="M 5.77,0 -2.88,5 V -5 Z"
-         id="path4628" />
+         id="path5942" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker5934"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,-4.8,0)"
+         style="fill:#919191;fill-rule:evenodd;stroke:#999999;stroke-width:1pt;stroke-opacity:1;fill-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5932" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker5846"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,-4.8,0)"
+         style="fill:#919191;fill-rule:evenodd;stroke:#999999;stroke-width:1pt;stroke-opacity:1;fill-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5844" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker5764"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,-4.8,0)"
+         style="fill:#919191;fill-rule:evenodd;stroke:#999999;stroke-width:1pt;stroke-opacity:1;fill-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5762" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker5688"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="EmptyTriangleOutL"
+       inkscape:isstock="true">
+      <path
+         transform="matrix(0.8,0,0,0.8,-4.8,0)"
+         style="fill:#919191;fill-rule:evenodd;stroke:#999999;stroke-width:1pt;stroke-opacity:1;fill-opacity:1"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5686" />
     </marker>
     <marker
        style="overflow:visible"
@@ -280,11 +336,11 @@
          y="54.752651"
          style="stroke-width:0.264583">keycloak</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.247687;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#919191;stroke:#999999;stroke-width:0.247687;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#marker5944);fill-opacity:1"
        d="M 166.13467,75.056635 191.43023,51.880202"
        id="path924" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.277136;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#919191;stroke:#999999;stroke-width:0.277136;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#marker5688);fill-opacity:1"
        d="m 166.13467,75.056635 26.29086,19.747204"
        id="path1260"
        sodipodi:nodetypes="cc" />
@@ -309,7 +365,7 @@
          y="145.4252"
          style="stroke-width:0.264583">mysql</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:"
+       style="fill:#919191;stroke:#999999;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:url(#marker5846);fill-opacity:1"
        d="m 225.36135,112.51829 v 12.38155"
        id="path4846" />
     <text
@@ -335,12 +391,12 @@
          y="26.065651"
          style="fill:#baedc6;fill-opacity:1;stroke:#808080;stroke-width:0.264583;stroke-opacity:1">Backend</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.271198px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#919191;stroke:#999999;stroke-width:0.271198px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:url(#marker5934);fill-opacity:1"
        d="M 71.878746,75.28894 H 96.925515"
        id="path5280" />
     <text
        xml:space="preserve"
-       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583"
+       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583;fill:#919191;fill-opacity:1;"
        x="77.172264"
        y="72.837189"
        id="text5284"><tspan
@@ -348,10 +404,10 @@
          id="tspan5282"
          x="77.172264"
          y="72.837189"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">https</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583;fill:#919191;fill-opacity:1;">https</tspan></text>
     <text
        xml:space="preserve"
-       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583"
+       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583;fill:#919191;fill-opacity:1;"
        x="76.608559"
        y="169.32726"
        id="text5636"
@@ -360,10 +416,10 @@
          id="tspan5634"
          x="76.608559"
          y="169.32726"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">http</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583;fill:#919191;fill-opacity:1;">http</tspan></text>
     <text
        xml:space="preserve"
-       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583"
+       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583;fill:#919191;fill-opacity:1;stroke:#999999;stroke-opacity:1;"
        x="185.60368"
        y="-39.450317"
        id="text5640"
@@ -372,10 +428,10 @@
          id="tspan5638"
          x="185.60368"
          y="-39.450317"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">http</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583;fill:#919191;fill-opacity:1;stroke:#999999;stroke-opacity:1;">http</tspan></text>
     <text
        xml:space="preserve"
-       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583"
+       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583;fill:#919191;fill-opacity:1;"
        x="226.42326"
        y="119.8549"
        id="text5666"><tspan
@@ -383,14 +439,14 @@
          id="tspan5664"
          x="226.42326"
          y="119.8549"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">mysql</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583;fill:#919191;fill-opacity:1;">mysql</tspan></text>
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="fill:#919191;stroke:#999999;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:url(#marker5764);fill-opacity:1"
        d="M 225.36135,67.72273 V 80.10428"
        id="path5668" />
     <text
        xml:space="preserve"
-       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583"
+       style="font-weight:bold;font-size:12.7px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';stroke-width:0.264583;fill:#919191;fill-opacity:1;"
        x="226.42326"
        y="75.059334"
        id="text5672"><tspan
@@ -398,6 +454,6 @@
          id="tspan5670"
          x="226.42326"
          y="75.059334"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583">http</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.93889px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.264583;fill:#919191;fill-opacity:1;">http</tspan></text>
   </g>
 </svg>
