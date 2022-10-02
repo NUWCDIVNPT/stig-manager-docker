@@ -220,9 +220,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="346.91019"
-     inkscape:cy="184.70178"
+     inkscape:zoom="1.4"
+     inkscape:cx="271.60925"
+     inkscape:cy="163.47816"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -230,7 +230,7 @@
      units="in"
      inkscape:window-width="1920"
      inkscape:window-height="1023"
-     inkscape:window-x="1920"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
      fit-margin-top="0"
@@ -276,7 +276,7 @@
          y="82.320503"
          style="stroke-width:0.170425">Browser</tspan></text>
     <rect
-       style="fill:#b1dcf2;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#b1dcf2;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect872"
        width="44.656738"
        height="20.007576"
@@ -296,7 +296,7 @@
          y="81.456657"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.76111px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.170425">nginx</tspan></text>
     <rect
-       style="fill:#baedc6;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#baedc6;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect889"
        width="44.656738"
        height="20.007576"
@@ -316,7 +316,7 @@
          y="94.72924"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.76111px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.170425">stigman</tspan></text>
     <rect
-       style="fill:#baedc6;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#baedc6;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect916"
        width="44.656738"
        height="20.007576"
@@ -336,16 +336,16 @@
          y="65.909927"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.76111px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.170425">keycloak</tspan></text>
     <path
-       style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.159542;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#marker5944)"
-       d="M 153.71315,79.097173 170.00668,64.168629"
+       style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.160818;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#marker5944)"
+       d="m 153.94898,79.096322 16.557,-14.926842"
        id="path924" />
     <path
-       style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.178511;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#marker5688)"
-       d="m 153.71315,79.097173 16.93463,12.719689"
+       style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.176687;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-mid:url(#marker5688)"
+       d="m 153.83216,79.096761 16.58929,12.720513"
        id="path1260"
        sodipodi:nodetypes="cc" />
     <rect
-       style="fill:#baedc6;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#baedc6;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect3682"
        width="44.656738"
        height="20.007576"
@@ -368,31 +368,9 @@
        style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.170425px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:url(#marker5846)"
        d="m 191.8626,103.2272 v 7.97528"
        id="path4846" />
-    <text
-       xml:space="preserve"
-       style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';fill:#b0dcf2;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="81.52784"
-       y="47.540806"
-       id="text4898"><tspan
-         sodipodi:role="line"
-         id="tspan4896"
-         x="81.52784"
-         y="47.540806"
-         style="fill:#b0dcf2;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Frontend</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';fill:#baedc6;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-opacity:1"
-       x="174.36757"
-       y="47.540806"
-       id="text4902"><tspan
-         sodipodi:role="line"
-         id="tspan4900"
-         x="174.36757"
-         y="47.540806"
-         style="fill:#baedc6;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-opacity:1">Backend</tspan></text>
     <path
-       style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.174686px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:url(#marker5934)"
-       d="M 93.000455,79.246807 H 109.13373"
+       style="fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.178214px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-mid:url(#marker5934)"
+       d="M 92.182327,79.246807 H 108.97385"
        id="path5280" />
     <text
        xml:space="preserve"
@@ -419,7 +397,7 @@
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.18127px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#919191;fill-opacity:1;stroke-width:0.170425">http</tspan></text>
     <text
        xml:space="preserve"
-       style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.170425;stroke-opacity:1"
+       style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';fill:#919191;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1;"
        x="175.25075"
        y="-30.34412"
        id="text5640"
@@ -428,7 +406,7 @@
          id="tspan5638"
          x="175.25075"
          y="-30.34412"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.18127px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#919191;fill-opacity:1;stroke:#999999;stroke-width:0.170425;stroke-opacity:1">http</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.18127px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#919191;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1;">http</tspan></text>
     <text
        xml:space="preserve"
        style="font-weight:bold;font-size:8.1804px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';fill:#919191;fill-opacity:1;stroke-width:0.170425"
@@ -465,7 +443,7 @@
        rx="2.6019065"
        ry="2.4351311" />
     <rect
-       style="fill:#b1dcf2;fill-opacity:1;stroke:#000000;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#b1dcf2;fill-opacity:1;stroke:#808080;stroke-width:0.170425;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect9536"
        width="44.656738"
        height="20.007576"
@@ -489,5 +467,53 @@
          y="84.379471"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;line-height:1.05;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:center;text-anchor:middle;stroke-width:0.170425"
          id="tspan9542">with CAC</tspan></text>
+    <g
+       id="g988"
+       transform="translate(2.3051892)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1"
+         x="174.36757"
+         y="47.540806"
+         id="text4902"><tspan
+           sodipodi:role="line"
+           id="tspan4900"
+           x="174.36757"
+           y="47.540806"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1">Backend</tspan></text>
+      <rect
+         style="fill:#baedc6;fill-opacity:1;stroke:#808080;stroke-width:0.122234;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect983"
+         width="4.8381677"
+         height="4.4798717"
+         x="168.18677"
+         y="43.184204"
+         rx="0.20935626"
+         ry="0.43267637" />
+    </g>
+    <g
+       id="g996"
+       transform="translate(-120.92285)">
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1"
+         x="174.36757"
+         y="47.540806"
+         id="text992"><tspan
+           sodipodi:role="line"
+           id="tspan990"
+           x="174.36757"
+           y="47.540806"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1">Frontend</tspan></text>
+      <rect
+         style="fill:#b1dcf2;fill-opacity:1;stroke:#808080;stroke-width:0.122234;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect994"
+         width="4.8381677"
+         height="4.4798717"
+         x="168.18677"
+         y="43.184204"
+         rx="0.20935626"
+         ry="0.43267637" />
+    </g>
   </g>
 </svg>

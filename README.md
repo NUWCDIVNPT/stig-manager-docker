@@ -1,8 +1,8 @@
-# Deploying STIG Manager with TLS and CAC Authentication
+# STIG Manager with CAC Authentication
 
 ## Scope of the example
 
-This project provides an example orchestration for deploying the STIG Manager API with support for user authentication incorporating the U.S. Department of Defense Common Access Card (CAC). **The example is provided as a proof of concept limited to connections from `localhost` and is NOT intended for production use.**
+This project provides an example orchestration for deploying STIG Manager with support for user authentication incorporating the U.S. Department of Defense Common Access Card (CAC). **The example is provided as a proof of concept limited to connections from `localhost` and is NOT intended for production use.**
 
 However, the concept demonstrated is applicable to a range of production deployments. For smaller teams, minor enhancements to the example may be all that is necessary to create an acceptable deployment.
 
@@ -25,25 +25,24 @@ This general architecture can be implemented with a wide ramge of technologies, 
 - docker-compose
 - Chrome, Edge, or Firefox browser
 
-The example uses a server certificate issued to the host `localhost` and signed by a demonstration CA named "demoCA". For the example to work, you must (temporarily) import trust in your browser for the demoCA certificate, found at [`certs/ca/demoCA.crt`](certs/ca/demoCA.crt).
+The example uses a server certificate issued to the host `localhost` and signed by a CA named `demoCA`. For the example to work, you must (temporarily) import trust in your browser for the `demoCA` certificate, found at [`certs/ca/demoCA.crt`](certs/ca/demoCA.crt).
 
 > How you do this varies across operating systems and browsers. For Windows, you import the certificate into "Trusted Root Certification Authorities". You should remove the certificate when finished running the orchestrations.
 
-## Getting the example files
+## Fetching the example files
 
 You have two options:
 
-- If you have `git` installed, navigate to an appropriate directory and execute the command `git clone https://github.com/NUWCDIVNPT/stig-manager-cac-example.git`. Then change directory to `stig-manager-cac-example`.
+- If you have `git` installed, navigate to an appropriate directory and execute the command `git clone https://github.com/NUWCDIVNPT/stig-manager-cac-example.git`. Then change to the newly created directory `stig-manager-cac-example`.
 
-- Use the "Download ZIP" option of this repository to download the files. Extract the files to an appropriate directory and change to that directory.
-
+- [Download a ZIP of this repository](https://github.com/NUWCDIVNPT/stig-manager-cac-example/archive/refs/heads/main.zip). Extract the archive to an appropriate directory and change to the newly extracted directory `stig-manager-cac-example-main`.
 ## Running the orchestration
 
 ```
 docker-compose -p cac-example up
 ```
 
-The orchestration has successfully bootstrapped when you see a `started` message like this from STIG Manager API:
+The orchestration has successfully bootstrapped when you see a `started` message like this from the STIG Manager API:
 
 ```
 cac-example-stigman-1   | {"date":"2022-10-01T18:04:26.734Z","level":3,"component":"index","type":"started","data":{"durationS":21.180474449,"port":54000,"api":"/api","client":"/","documentation":"/docs"}}
@@ -59,10 +58,19 @@ Once STIG Manager has started, navigate your browser to:
 https://localhost/stigman/
 ```
 
-- The STIG Manager Web App is fetched from the `stigman` service and executed in your browser. The Web App will redirect you to Keycloak for authentication.
-- Keycloak will prompt you to select a certificate from your PIN-protected CAC to use with your authentication.
-- After your certficate is validated, Keycloak will create a new account using your certificate's Common Name (CN) and configure that account with the roles "Application Management" and "Create Collection".
-- Keycloak will provide the Web App with an OAuth2 token that contains your identity and application roles/scopes. This token is used by the Web App to make requests to STIG Manager API endpoints.
+The following sequence of events occur:
+
+- Your browser starts the TLS Handshake with the `nginx` proxy.
+- During the handshake, `nginx` sends a `Certificate Request` message to your browser.
+- Your browser prompts you to chose a certificate from your CAC.
+- The certificate you choose is provided to `nginx` in a `Certificate` message and the corresponding private key on your CAC is used by your browser to create a `Certificate Verify` message which authenticates the certificate.
+- 
+- The Web App redirects your browser to the Keycloak authorization endpoint.
+- `nginx` proxies this authorization request and asks your browser to prompt for a certificate from your PIN-protected CAC.
+- Your browser completes the Mutual TLS (mTLS) Handshake with `nginx` and forwards 
+- After a successful authentication, Keycloak tries to match your certificate's Common Name (CN) to a Keycloak account. If necessary, it creates a new account using your CN and configure that account with the roles "Application Management" and "Create Collection".
+- Keycloak will generate an OAuth2 token that contains your identity and application roles/scopes. This token is provided to the Web App for making requests to STIG Manager API endpoints.
+- The Web App will display 
 
 You can access the Keycloak admin pages by navigating to:
 
