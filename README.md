@@ -1,10 +1,8 @@
 # STIG Manager with CAC Authentication
 
-## Scope of the example
+## Limitations of this example
 
-This is an example orchestration for deploying STIG Manager with support for user authentication incorporating the U.S. Department of Defense Common Access Card (CAC). **The example is provided as a proof of concept limited to connections from `localhost` and is NOT intended for production use.**
-
-However, the concept demonstrated is applicable to a range of production deployments. For smaller teams, minor enhancements to the example may be all that is necessary to create an acceptable deployment.
+This is an example orchestration for deploying STIG Manager with support for user authentication incorporating the U.S. Department of Defense Common Access Card (CAC). **The example is limited to connections to and from `localhost` and is NOT intended for production use.**
 
 ## General architecture
 
@@ -15,7 +13,7 @@ However, the concept demonstrated is applicable to a range of production deploym
 - `stigman` communicates with `keycloak` via Keycloak's unexposed back channel port using HTTP and with `mysql` via MySQL's unexposed back channel port using the MySQL Protocol.
 - End users located at `browser with CAC` connect to `nginx` on the exposed front channel HTTPS port and request resources from `stigman` and `keycloak`. These resources include the Keycloak authentication service, the STIG Manager API, and the STIG Manager Web App.
 
-This general architecture can be implemented with a wide ramge of technologies, from bare-metal deployments to complex containerized orchestrations. The example uses a simple docker-compose orchestration. 
+This general architecture can be implemented with a wide range of technologies, from bare-metal deployments to complex containerized orchestrations. The example uses a simple docker-compose orchestration. 
 
 ## Dependencies for running the example
 
@@ -78,10 +76,10 @@ You can [review the file `nginx/nginx.conf`](nginx/nginx.conf) for details.
 ## Keycloak configuration
 ### Keycloak Authentication Flow
 
-During startup, Keycloak imports a [realm configuration file](kc/stigman_realm.json) which includes the `X.509 Browser` Authentication Flow to support X.509 certificate mapping. [This Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/#_x509) describes how to configure authentication flows to incude X.509 client certificates.
+During startup, Keycloak imports a [realm configuration file](kc/stigman_realm.json) which includes the `X.509 Browser` Authentication Flow to support X.509 certificate mapping. [This Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/#_x509) describes how to configure authentication flows to include X.509 client certificates.
 
 
-The example uses a custom provider [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in X.509 authenticator. The custom provider will create a new user account if a certificate cannot be mapped to an exisiting account. The provider file is `kc/create-x509-user.jar` which is mounted to the Keycloak container at `/opt/keycloak/providers`.
+The example uses a custom provider [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in X.509 authenticator. The custom provider will create a new user account if a certificate cannot be mapped to an existing account. The provider file is `kc/create-x509-user.jar` which is mounted to the Keycloak container at `/opt/keycloak/providers`.
 
 ### Keycloak keystores
 
