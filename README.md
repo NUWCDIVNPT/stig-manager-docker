@@ -2,7 +2,7 @@
 
 ## Scope of the example
 
-This project provides an example orchestration for deploying STIG Manager with support for user authentication incorporating the U.S. Department of Defense Common Access Card (CAC). **The example is provided as a proof of concept limited to connections from `localhost` and is NOT intended for production use.**
+This is an example orchestration for deploying STIG Manager with support for user authentication incorporating the U.S. Department of Defense Common Access Card (CAC). **The example is provided as a proof of concept limited to connections from `localhost` and is NOT intended for production use.**
 
 However, the concept demonstrated is applicable to a range of production deployments. For smaller teams, minor enhancements to the example may be all that is necessary to create an acceptable deployment.
 
@@ -33,9 +33,9 @@ The example uses a server certificate issued to the host `localhost` and signed 
 
 You have two options:
 
-- If you have `git` installed, navigate to an appropriate directory and execute the command `git clone https://github.com/NUWCDIVNPT/stig-manager-cac-example.git`. Then change to the newly created directory `stig-manager-cac-example`.
+- If you have `git` installed, clone this repository. Then change to the newly created directory.
 
-- [Download a ZIP of this repository](https://github.com/NUWCDIVNPT/stig-manager-cac-example/archive/refs/heads/main.zip). Extract the archive to an appropriate directory and change to the newly extracted directory `stig-manager-cac-example-main`.
+- Download a ZIP of this repository using the green Code button above. Extract the archive to an appropriate directory and change to the newly extracted directory.
 ## Running the orchestration
 
 ```
@@ -73,34 +73,23 @@ https://localhost/kc/admin
 
 `nginx` provides TLS service for the STIG Manager API and Keycloak. Client certificate authentication is **required** for access to the Keycloak `authorization_endpoint`. Client certificate authentication is **optional** for API endpoints because access to the API is controlled by OIDC/OAuth2 tokens.
 
+You can [review the file `nginx/nginx.conf`](nginx/nginx.conf) for details.
+
 ## Keycloak configuration
 ### Keycloak Authentication Flow
 
-The Keycloak documentation describes [how to modify a realm's browser authentication flow to incude X.509 client certificates](https://www.keycloak.org/docs/latest/server_admin/#_x509).
+During startup, Keycloak imports a [realm configuration file](kc/stigman_realm.json) which includes the `X.509 Browser` Authentication Flow to support X.509 certificate mapping. [This Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/#_x509) describes how to configure authentication flows to incude X.509 client certificates.
 
-The built-in execution "X509/Validate Username Form" attempts to match certificate information to existing Keycloak user accounts and fails otherwise.
 
-Both orchestrations import the realm file [`kc/stigman_realm.json`](kc/stigman_realm.json), which is configures the Authentication flow to match a certificate Common Name (CN) to a Keycloak username.
-
-> The example uses a custom plugin [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in execution to create new user accounts when an exisiting account is not found. The plugin file is `kc/create-x509-user.jar`. The orchestrations volume mount this file to the Keycloak container at `/opt/jboss/keycloak/standalone/deployments/create-x509-user.jar`
+The example uses a custom provider [modified from this project](https://github.com/lscorcia/keycloak-cns-authenticator/) that extends the built-in X.509 authenticator. The custom provider will create a new user account if a certificate cannot be mapped to an exisiting account. The provider file is `kc/create-x509-user.jar` which is mounted to the Keycloak container at `/opt/keycloak/providers`.
 
 ### Keycloak keystores
 
 Keycloak requires a keystore that contains certificates for the DoD Root CA and Intermediate CAs used to sign CAC certificates. 
 
-> The example provides the file `certs/dod/Certificates_PKCS7_v5.9_DoD.pem.p12` for this purpose. The orchestration volume mounts this file to the Keycloak container at `/tmp/truststore.p12`
+> The example provides the file `certs/dod/Certificates_PKCS7_v5.9_DoD.pem.p12` for this purpose, which is mounted to the Keycloak container at `/tmp/truststore.p12`
 
 ## Notes
-### Make pkcs12 archive from cert and private key
-
-`openssl pkcs12 -export -name server-cert -in tls.crt -inkey tls.key -out tls.p12`
-
-(Must set an export password because keytool step below requires one)
-
-### Import pkcs12 archive into a JKS keystore
-
-`keytool -importkeystore -destkeystore tls.jks -srckeystore tls.p12 -srcstoretype pkcs12 -alias server-cert`
-
 ### To clear Chrome HSTS entry (for localhost, perhaps)
 
 `chrome://net-internals/#hsts` -  Delete domain security policies
