@@ -8,10 +8,10 @@ This is an example orchestration for deploying STIG Manager with support for use
 
 ![Keycloak native diagram](diagrams/kc-reverse-1.svg)
 
-- The `nginx` reverse proxy executes a TLS stack with client certificate verification and listens on an exposed front channel HTTPS port.
-- `nginx` proxies traffic to `stigman` and `keycloak` which are listening on unexposed back channel HTTP ports.
-- `stigman` communicates with `keycloak` via Keycloak's unexposed back channel port using HTTP and with `mysql` via MySQL's unexposed back channel port using the MySQL Protocol.
-- End users located at `browser with CAC` connect to `nginx` on the exposed front channel HTTPS port and request resources from `stigman` and `keycloak`. These resources include the Keycloak authentication service, the STIG Manager API, and the STIG Manager Web App.
+- The `nginx` reverse proxy executes a TLS stack with client certificate verification and listens on a front channel HTTPS port.
+- `nginx` proxies traffic to `stigman` and `keycloak` which are listening on back channel HTTP ports.
+- `stigman` communicates with `keycloak` via Keycloak's back channel port using HTTP and with `mysql` via MySQL's back channel port using the MySQL Protocol.
+- End users located at `browser with CAC` connect to `nginx` on the front channel HTTPS port and request resources from `stigman` and `keycloak`. These resources include the Keycloak authentication service, the STIG Manager API, and the STIG Manager Web App.
 
 This general architecture can be implemented with a wide range of technologies, from bare-metal deployments to complex containerized orchestrations. The example uses a simple docker-compose orchestration. 
 
