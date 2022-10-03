@@ -245,7 +245,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -469,7 +469,7 @@
          id="tspan9542">with CAC</tspan></text>
     <g
        id="g988"
-       transform="translate(2.3051892)">
+       transform="translate(3.0260055)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1"
@@ -480,7 +480,7 @@
            id="tspan4900"
            x="174.36757"
            y="47.540806"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1">Backend</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1">Back channel</tspan></text>
       <rect
          style="fill:#baedc6;fill-opacity:1;stroke:#808080;stroke-width:0.122234;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect983"
@@ -493,7 +493,7 @@
     </g>
     <g
        id="g996"
-       transform="translate(-120.92285)">
+       transform="translate(-88.267411)">
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1"
@@ -504,7 +504,7 @@
            id="tspan990"
            x="174.36757"
            y="47.540806"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1">Frontend</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:5.64444px;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#808080;fill-opacity:1;stroke:none;stroke-width:0.170425;stroke-opacity:1">Front channel</tspan></text>
       <rect
          style="fill:#b1dcf2;fill-opacity:1;stroke:#808080;stroke-width:0.122234;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect994"
