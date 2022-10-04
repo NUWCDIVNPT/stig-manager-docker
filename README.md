@@ -84,6 +84,8 @@ You can [review the file `nginx/nginx.conf`](nginx/nginx.conf).
 The environment variables `STIGMAN_OIDC_PROVIDER` and `STIGMAN_CLIENT_OIDC_PROVIDER` are set to the Keycloak back channel and front channel realm URLs, respectively.
 
 ## Keycloak configuration
+
+[The Keycloak Guides](https://www.keycloak.org/guides) provide documentation on configuring Keycloak for many deployment scenarios including this example orchestration. 
 ### Keycloak Authentication Flow
 
 During startup, Keycloak imports a [realm configuration file](kc/stigman_realm.json) which includes the `X.509 Browser` Authentication Flow to support X.509 certificate mapping. [This Keycloak documentation](https://www.keycloak.org/docs/latest/server_admin/#_x509) describes how to configure authentication flows to include X.509 client certificates.
@@ -105,9 +107,6 @@ Keycloak behind Nginx requires a keystore that contains certificates for the DoD
 `chrome://settings/clearBrowserData` - Cached images and files
 
 
-## Further Reading
-
-[The Keycloak Guides](https://www.keycloak.org/guides) maintained by that project were the primary resources used to configure Keycloak for this sample orchestration. 
 
 
 
