@@ -81,7 +81,7 @@ You can [review the file `nginx/nginx.conf`](nginx/nginx.conf).
 
 ## STIG Manager configuration
 
-The environment variables `STIGMAN_OIDC_PROVIDER` and `STIGMAN_CLIENT_OIDC_PROVIDER` are set to Keycloak's back channel and front channel realm URLs, respectively.
+The environment variables `STIGMAN_OIDC_PROVIDER` and `STIGMAN_CLIENT_OIDC_PROVIDER` are set to the Keycloak back channel and front channel realm URLs, respectively.
 
 ## Keycloak configuration
 ### Keycloak Authentication Flow
