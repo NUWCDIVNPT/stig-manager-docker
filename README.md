@@ -1,3 +1,5 @@
+**NOTE:** *Information on this topic is now being maintained in the [stigman-orchestration repository.](https://github.com/NUWCDIVNPT/stigman-orchestration)*
+
 # STIG Manager OSS docker-compose examples
 
 Sample docker-compose orchestrations for the [STIG Manager OSS project](https://github.com/NUWCDIVNPT/stig-manager)
