@@ -81,7 +81,7 @@ You can [review the file `nginx/nginx.conf`](nginx/nginx.conf).
 
 ## STIG Manager configuration
 
-There is no special configuration required for STIG Manager. The environment variables `STIGMAN_OIDC_PROVIDER` and `STIGMAN_CLIENT_OIDC_PROVIDER` are set to Keycloak's back channel and front channel realm URLs, respectively. The envvars `STIGMAN_DB_*` are set as needed to login to MySQL.  
+The environment variables `STIGMAN_OIDC_PROVIDER` and `STIGMAN_CLIENT_OIDC_PROVIDER` are set to Keycloak's back channel and front channel realm URLs, respectively.
 
 ## Keycloak configuration
 ### Keycloak Authentication Flow
