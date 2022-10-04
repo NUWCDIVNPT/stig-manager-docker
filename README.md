@@ -15,7 +15,7 @@ However, the concept demonstrated is applicable to a range of production deploym
 - `stigman` communicates with `keycloak` via Keycloak's unexposed back channel port using HTTP and with `mysql` via MySQL's unexposed back channel port using the MySQL Protocol.
 - End users located at `browser with CAC` connect to `nginx` on the exposed front channel HTTPS port and request resources from `stigman` and `keycloak`. These resources include the Keycloak authentication service, the STIG Manager API, and the STIG Manager Web App.
 
-This general architecture can be implemented with a wide ramge of technologies, from bare-metal deployments to complex containerized orchestrations. The example uses a simple docker-compose orchestration. 
+This general architecture can be implemented with a wide range of technologies, from bare-metal deployments to complex containerized orchestrations. The example uses a simple docker-compose orchestration. 
 
 ## Dependencies for running the example
 
@@ -95,4 +95,11 @@ Keycloak requires a keystore that contains certificates for the DoD Root CA and 
 `chrome://net-internals/#hsts` -  Delete domain security policies
 
 `chrome://settings/clearBrowserData` - Cached images and files
+
+
+## Further Reading
+
+[The Keycloak Guides](https://www.keycloak.org/guides) maintained by that project were the primary resources used to configure Keycloak for this sample orchestration. 
+
+
 
