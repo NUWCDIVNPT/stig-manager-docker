@@ -67,11 +67,19 @@ https://localhost/kc/admin
 
 > After using Chrome to HTTPS connect to `https://localhost`, you may find Chrome will no longer make HTTP connections to `http://localhost:[ANY_PORT]`. Once you're finished with the example, see [this note](#to-clear-chrome-hsts-entry-for-localhost-perhaps) for how to remedy this.
 
-## `nginx` configuration
+## Nginx configuration
 
-`nginx` provides TLS service for the STIG Manager API and Keycloak. Client certificate authentication is **required** for access to the Keycloak `authorization_endpoint`. Client certificate authentication is **optional** for API endpoints because access to the API is controlled by OIDC/OAuth2 tokens.
+Client certificate authentication is **required** for access to the Keycloak authorization endpoint. Client certificate authentication is **optional** for API endpoints since access to the API is controlled by OAuth2 tokens.
 
-You can [review the file `nginx/nginx.conf`](nginx/nginx.conf) for details.
+Nginx requires a PEM file containing certificates for the DoD Root CA and Intermediate CAs used to sign CAC certificates. 
+
+> The example provides the file `certs/dod/Certificates_PKCS7_v5.9_DoD.pem.pem` for this purpose, which is mounted to the Nginx container at `/etc/nginx/dod-certs.pem`
+
+You can [review the file `nginx/nginx.conf`](nginx/nginx.conf).
+
+## STIG Manager configuration
+
+There is no special configuration required for STIG Manager. The environment variables `STIGMAN_OIDC_PROVIDER` and `STIGMAN_CLIENT_OIDC_PROVIDER` are set to Keycloak's back channel and front channel realm URLs, respectively. The envvars `STIGMAN_DB_*` are set as needed to login to MySQL.  
 
 ## Keycloak configuration
 ### Keycloak Authentication Flow
@@ -83,7 +91,7 @@ The example uses a custom provider [modified from this project](https://github.c
 
 ### Keycloak keystores
 
-Keycloak requires a keystore that contains certificates for the DoD Root CA and Intermediate CAs used to sign CAC certificates. 
+Keycloak behind Nginx requires a keystore that contains certificates for the DoD Root CA and Intermediate CAs used to sign CAC certificates. 
 
 > The example provides the file `certs/dod/Certificates_PKCS7_v5.9_DoD.pem.p12` for this purpose, which is mounted to the Keycloak container at `/tmp/truststore.p12`
 
