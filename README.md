@@ -1,3 +1,6 @@
+**NOTE:** *Information on this topic is now being maintained in the [stigman-orchestration repository.](https://github.com/NUWCDIVNPT/stigman-orchestration)*
+
+
 # STIG Manager with CAC Authentication
 
 ## Limitations of this example
