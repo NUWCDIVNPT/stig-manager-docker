@@ -1,3 +1,6 @@
+**NOTE:** *Information on this topic is now being maintained in the [stigman-orchestration repository.](https://github.com/NUWCDIVNPT/stigman-orchestration)*
+
+
 # Using Keycloak with TLS and CAC authentication
 
 ## Prerequisite: Browser CA trust
